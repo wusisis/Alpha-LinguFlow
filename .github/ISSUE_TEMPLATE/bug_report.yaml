@@ -40,4 +40,10 @@ body:
       label: Additional Information
       # There is no version information for the project now, but it can be added later
       description: |
-  
+        - Operating System: <!-- Specify the OS (e.g., Windows 10, Ubuntu 20.04) -->
+        - Browser: <!-- Specify the Browser (e.g. Chrome v121.0) -->
+        - Python Version: <!-- Specify the Python version (e.g., 3.8) -->
+        - Node Version: <!-- Specify the Node version (e.g., 14.17.0) -->
+        - Related Issues: <!-- Link to any related issues here (e.g., #1) -->
+        - Any other relevant information.
+      placeholder: Any additional details
