@@ -182,3 +182,157 @@ class AppMetadata(APIModel):
     langfuse_public_key: Optional[str]
     langfuse_secret_key: Optional[str]
 
+
+class VersionMetadata(APIModel):
+    """
+    The request model for updating app version data.
+    """
+
+    name: str
+    metadata: Optional[dict]
+
+
+class InteractionInfo(BaseModel):
+    """
+    InteractionInfo models the interaction object.
+    """
+
+    id: str
+    user: str
+    version_id: str
+    created_at: int
+    updated_at: int
+    output: Optional[str]
+    data: Optional[Dict[str, Any]]
+
+
+class InteractionInfoResponse(APIModel):
+    """
+    The response model for /interactions/{interaction_id}.
+    """
+
+    interaction: Optional[InteractionInfo]
+
+
+class ApplicationListResponse(APIModel):
+    """
+    The response model for /applications, which returns a list of app info.
+    """
+
+    applications: List[ApplicationInfo]
+
+
+class ApplicationInfoResponse(APIModel):
+    """
+    The response model for /applications/{application_id}, which returns information
+    of specific app. If the specifed app not found, the application property will be
+    None.
+    """
+
+    application: Optional[ApplicationInfo]
+
+
+class ApplicationCreateResponse(APIModel):
+    """
+    The response model for creating app.
+    """
+
+    id: ApplicationID
+
+
+class ApplicationCreate(APIModel):
+    """
+    The request model for creating app.
+    """
+
+    name: str
+    langfuse_public_key: Optional[str]
+    langfuse_secret_key: Optional[str]
+
+
+class InteractionScore(APIModel):
+    """
+    The request model for scoring interaction.
+    """
+
+    value: float
+    comment: Optional[str]
+
+
+class ItemDeleteResponse(APIModel):
+    """
+    The response model for item deletion.
+    """
+
+    success: bool
+    message: str
+
+
+class ItemUpdateResponse(APIModel):
+    """
+    The response model for item update.
+    """
+
+    success: bool
+    message: str
+
+
+class ItemCreateResponse(APIModel):
+    """
+    The response model for item create.
+    """
+
+    success: bool
+    message: str
+
+
+class VersionInfoResponse(APIModel):
+    """
+    The response model for /applications/{application_id}/versions/{version_id},
+    which returns information of specific app version. If the specifed version not
+    found, the version property will be None.
+    """
+
+    version: Optional[ApplicationVersionInfo]
+
+
+class VersionListResponse(APIModel):
+    """
+    The response model for application version list api.
+    """
+
+    versions: List[ApplicationVersionInfo]
+
+
+class VersionCreateResponse(APIModel):
+    """The reaponse model for app version creation api."""
+
+    id: VersionID
+
+
+class ApplicationVersionCreate(APIModel):
+    """The request model for app version creation api."""
+
+    name: str
+    parent_id: Optional[str]
+    metadata: Optional[dict]
+    configuration: GraphConfiguration
+
+
+class ApplicationRun(APIModel):
+    """The request model for trigger an app."""
+
+    input: Union[str, List[str], Dict[str, str]]
+    session_id: Optional[str]
+
+
+class ApplicationRunResponse(APIModel):
+    """The response model for trigger an app."""
+
+    id: InteractionID
+
+
+class User(APIModel):
+    """The user identity"""
+
+    user: str
