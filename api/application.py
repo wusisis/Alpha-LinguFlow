@@ -83,4 +83,39 @@ class ApplicationView:
         signature = inspect.signature(foo)
         params = dict(signature.parameters)
 
-        parameters = self.resolve_params(par
+        parameters = self.resolve_params(params)
+        ```
+        """
+        ss = []
+        for sname, param in params.items():
+            p = Parameter(
+                name=sname,
+                class_name=self.resolver.relookup(param.annotation),
+            )
+            if param.default != inspect.Parameter.empty:
+                p.default = param.default
+            if param.kind == param.VAR_KEYWORD:
+                p.is_variable_keyword = True
+            ss.append(p)
+        return ss
+
+    @router.get("/patterns")
+    def patterns(self) -> ApplicationPatternsResponse:
+        """
+        Retrieves application patterns based on resolver information.
+
+        Returns:
+            ApplicationPatternsResponse: A response containing a list of PatternInfo objects.
+        """
+        names = self.resolver.names()
+        patterns = []
+        for name in names:
+            if (
+                self.resolver.lookup(name, "category") == "type"
+                or self.resolver.lookup(name, "category") == "builtin"
+            ):
+                pi = PatternInfo(
+                    name=name,
+                    alias=self.resolver.lookup(name, "alias"),
+                    candidates=self.resolver.candidates(name),
+                    slot
