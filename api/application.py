@@ -118,4 +118,32 @@ class ApplicationView:
                     name=name,
                     alias=self.resolver.lookup(name, "alias"),
                     candidates=self.resolver.candidates(name),
-                    slot
+                    slots=None,
+                )
+                if (not self.resolver.is_abstract(self.resolver.lookup(name))) and (
+                    self.resolver.lookup(name, "category") == "type"
+                ):
+                    pi.slots = self.resolve_params(self.resolver.slots(name))
+                patterns.append(pi)
+        return ApplicationPatternsResponse(patterns=patterns)
+
+    @router.get("/blocks")
+    def blocks(self) -> ApplicationBlocksResponse:
+        """
+        Retrieves application blocks based on resolver information.
+
+        Returns:
+            ApplicationBlocksResponse: A response containing a list of BlockInfo objects.
+        """
+        names = self.resolver.names()
+        blocks = []
+        for name in names:
+            if self.resolver.lookup(name, "category") == "block":
+                blocks.append(
+                    BlockInfo(
+                        name=name,
+                        alias=self.resolver.lookup(name, "alias"),
+                        dir=self.resolver.lookup(name, "dir"),
+                        slots=self.resolve_params(self.resolver.slots(name)),
+                        inports=self.resolve_params(self.resolver.inports(name)),
+                        
