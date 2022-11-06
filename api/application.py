@@ -212,4 +212,36 @@ class ApplicationView:
     def create_app(
         self, request: Request, application: ApplicationCreate
     ) -> ApplicationCreateResponse:
-     
+        """
+        Endpoint to create a new application.
+
+        Args:
+            application (ApplicationCreate): The application data to create.
+
+        Returns:
+            ApplicationCreateResponse: The response containing the ID of the created application.
+        """
+        created_at = datetime.utcnow()
+        _id = str(uuid.uuid4())
+        self.database.create_application(
+            Application(
+                id=_id,
+                name=application.name,
+                user=request.state.user,
+                langfuse_public_key=application.langfuse_public_key,
+                langfuse_secret_key=application.langfuse_secret_key,
+                created_at=created_at,
+                updated_at=created_at,
+            )
+        )
+        return ApplicationCreateResponse(id=_id)
+
+    @router.post("/applications/{application_id}/async_run")
+    def async_run_app(
+        self, request: Request, application_id: str, config: ApplicationRun
+    ) -> ApplicationRunResponse:
+        """
+        Asynchronously runs an application with the specified ID and configuration.
+
+        Args:
+            application_id (str): The ID of the appli
