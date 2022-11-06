@@ -176,4 +176,40 @@ class ApplicationView:
                     langfuse_secret_key=app.langfuse_secret_key,
                     active_version=app.active_version,
                     created_at=int(app.created_at.timestamp()),
-              
+                    updated_at=int(app.updated_at.timestamp()),
+                )
+                if app
+                else None
+            )
+        )
+
+    @router.get("/applications")
+    def list_app(self) -> ApplicationListResponse:
+        """
+        Retrieve a list of applications.
+
+        Returns:
+            ApplicationListResponse: The response containing a list of applications.
+        """
+        apps = self.database.list_applications()
+        return ApplicationListResponse(
+            applications=[
+                ApplicationInfo(
+                    id=app.id,
+                    name=app.name,
+                    user=app.user,
+                    langfuse_public_key=app.langfuse_public_key,
+                    langfuse_secret_key=app.langfuse_secret_key,
+                    active_version=app.active_version,
+                    created_at=int(app.created_at.timestamp()),
+                    updated_at=int(app.updated_at.timestamp()),
+                )
+                for app in apps
+            ]
+        )
+
+    @router.post("/applications")
+    def create_app(
+        self, request: Request, application: ApplicationCreate
+    ) -> ApplicationCreateResponse:
+     
