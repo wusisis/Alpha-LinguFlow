@@ -146,4 +146,34 @@ class ApplicationView:
                         dir=self.resolver.lookup(name, "dir"),
                         slots=self.resolve_params(self.resolver.slots(name)),
                         inports=self.resolve_params(self.resolver.inports(name)),
-                        
+                        outport=self.resolver.relookup(self.resolver.outport(name)),
+                    )
+                )
+
+        return ApplicationBlocksResponse(blocks=blocks)
+
+    @router.get("/applications/{application_id}")
+    def get_app(self, application_id: str) -> ApplicationInfoResponse:
+        """
+        Get information about a specific application.
+
+        Args:
+            application_id (str): The ID of the application to retrieve.
+
+        Returns:
+            ApplicationInfoResponse: Information about the application, including its ID, name,
+                active version, creation timestamp, and last update timestamp.
+        """
+        app = self.database.get_application(application_id)
+
+        return ApplicationInfoResponse(
+            application=(
+                ApplicationInfo(
+                    id=app.id,
+                    name=app.name,
+                    user=app.user,
+                    langfuse_public_key=app.langfuse_public_key,
+                    langfuse_secret_key=app.langfuse_secret_key,
+                    active_version=app.active_version,
+                    created_at=int(app.created_at.timestamp()),
+              
