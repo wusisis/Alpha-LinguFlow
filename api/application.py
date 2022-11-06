@@ -244,4 +244,35 @@ class ApplicationView:
         Asynchronously runs an application with the specified ID and configuration.
 
         Args:
-            application_id (str): The ID of the appli
+            application_id (str): The ID of the application to run.
+            config (ApplicationRun): The configuration for running the application.
+
+        Returns:
+            ApplicationRunResponse: The response containing the interaction ID which is
+                used for polling running result latter.
+        """
+        return ApplicationRunResponse(
+            id=self.invoker.invoke(
+                user=request.state.user,
+                app_id=application_id,
+                input=config.input,
+                session_id=config.session_id,
+            )
+        )
+
+    @router.get("/interactions/{interaction_id}")
+    def get_interaction(self, interaction_id: str) -> InteractionInfoResponse:
+        """
+        Retrieves information about a specific interaction by its ID.
+
+        Args:
+            interaction_id (str): The ID of the interaction to retrieve.
+
+        Returns:
+            InteractionInfoResponse: An object containing information about the interaction.
+        """
+        interaction = self.invoker.poll(interaction_id)
+        if interaction is not None and interaction.error is not None:
+            return JSONResponse(**interaction.error)
+        return InteractionInfoResponse(
+    
