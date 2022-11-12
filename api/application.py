@@ -338,4 +338,37 @@ class ApplicationView:
         #   The Langfuse SDK executes network requests in the background on a separate thread.
         #   Any exception on that thread cannot be caught here. Therefore, a response with success=True
         #   does not necessarily mean that the Langfuse server has accepted the score.
-        return ItemCreateResponse(success=T
+        return ItemCreateResponse(success=True, message=f"Score has been created.")
+
+    @router.put("/applications/{application_id}")
+    def update_app_meta(
+        self, application_id: str, metadata: AppMetadata
+    ) -> ItemUpdateResponse:
+        """
+        Update the metadata of an application.
+
+        Args:
+            application_id (str): The ID of the application to update.
+            metadata (Metadata): The new metadata for the application.
+
+        Returns:
+            ItemUpdateResponse: An object indicating the success or failure of the update operation.
+        """
+        try:
+            updated_at = datetime.utcnow()
+            self.database.update_application(
+                application_id,
+                {
+                    "name": metadata.name,
+                    "langfuse_public_key": metadata.langfuse_public_key,
+                    "langfuse_secret_key": metadata.langfuse_secret_key,
+                    "updated_at": updated_at,
+                },
+            )
+            return ItemUpdateResponse(
+                success=True,
+                message=f"Application {application_id}'s metadata updated.",
+            )
+        except Exception as e:
+            return ItemUpdateResponse(
+                success=Fal
