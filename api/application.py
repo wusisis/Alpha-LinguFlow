@@ -309,4 +309,33 @@ class ApplicationView:
         """
 
         # get langfuse configuration
-        interaction = self.database.get_interaction(inte
+        interaction = self.database.get_interaction(interaction_id)
+        if not interaction:
+            raise InteractionNotFound(interaction_id)
+        app = self.database.get_application(interaction.app_id)
+        if not app:
+            raise ApplicationNotFound(app_id)
+        if not app.langfuse_public_key or not app.langfuse_secret_key:
+            return ItemCreateResponse(
+                success=False,
+                message=f"Langfuse was not configured correctly application {interaction.app_id}.",
+            )
+
+        # create score
+        langfuse = Langfuse(
+            public_key=app.langfuse_public_key,
+            secret_key=app.langfuse_secret_key,
+        )
+        langfuse.score(
+            trace_id=interaction_id,
+            # use user name as score name since a interaction may be scored by different users
+            name=request.state.user,
+            value=score.value,
+            comment=score.comment,
+        )
+
+        # XXX:
+        #   The Langfuse SDK executes network requests in the background on a separate thread.
+        #   Any exception on that thread cannot be caught here. Therefore, a response with success=True
+        #   does not necessarily mean that the Langfuse server has accepted the score.
+        return ItemCreateResponse(success=T
