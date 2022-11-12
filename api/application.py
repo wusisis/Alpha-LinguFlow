@@ -275,4 +275,38 @@ class ApplicationView:
         if interaction is not None and interaction.error is not None:
             return JSONResponse(**interaction.error)
         return InteractionInfoResponse(
-    
+            interaction=(
+                InteractionInfo(
+                    id=interaction.id,
+                    user=interaction.user,
+                    version_id=interaction.version_id,
+                    created_at=int(interaction.created_at.timestamp()),
+                    updated_at=int(interaction.updated_at.timestamp()),
+                    data=interaction.data,
+                    output=interaction.output,
+                )
+                if interaction
+                else None
+            )
+        )
+
+    @router.post("/interactions/{interaction_id}/scores")
+    def score_interaction(
+        self,
+        request: Request,
+        interaction_id: str,
+        score: InteractionScore,
+    ) -> ItemCreateResponse:
+        """
+        Give an interaction a feedback to measure if the result is good.
+
+        Args:
+            interaction_id (str): The ID of the interaction to score.
+            score (InteractionScore): The score detail
+
+        Returns:
+            ItemCreateResponse: An object indicating the success or failure of the score operation.
+        """
+
+        # get langfuse configuration
+        interaction = self.database.get_interaction(inte
