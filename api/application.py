@@ -441,4 +441,34 @@ class ApplicationView:
     ) -> VersionInfoResponse:
         version = self.database.get_version(version_id)
         if not version or version.app_id != application_id:
- 
+            return VersionInfoResponse(version=None)
+
+        return VersionInfoResponse(
+            version=(
+                ApplicationVersionInfo(
+                    id=version.id,
+                    name=version.name,
+                    user=version.user,
+                    app_id=version.app_id,
+                    created_at=int(version.created_at.timestamp()),
+                    updated_at=int(version.updated_at.timestamp()),
+                    metadata=version.meta,
+                    configuration=version.configuration,
+                )
+            )
+        )
+
+    @router.get("/applications/{application_id}/versions")
+    def list_app_versions(self, application_id: str) -> VersionListResponse:
+        """
+        Get a list of application versions for the specified application_id.
+
+        Args:
+            application_id (str): The ID of the application.
+
+        Returns:
+            VersionListResponse: A response containing a list of ApplicationVersionInfo objects
+                representing the versions of the specified application.
+        """
+        versions = self.database.list_versions(application_id)
+        return VersionList
