@@ -410,4 +410,35 @@ class ApplicationView:
         self,
         request: Request,
         application_id: str,
-        version_id: str
+        version_id: str,
+        config: ApplicationRun,
+    ) -> ApplicationRunResponse:
+        """
+        Asynchronously runs an application with the specified app ID, version ID and configuration.
+
+        Args:
+            application_id (str): The ID of the application to run.
+            version_id (str): The version of the application to run.
+            config (ApplicationRun): The configuration for running the application.
+
+        Returns:
+            ApplicationRunResponse: The response containing the interaction ID which is
+                used for polling running result latter.
+        """
+        return ApplicationRunResponse(
+            id=self.invoker.invoke(
+                user=request.state.user,
+                app_id=application_id,
+                input=config.input,
+                version_id=version_id,
+                session_id=config.session_id,
+            )
+        )
+
+    @router.get("/applications/{application_id}/versions/{version_id}")
+    def get_app_version(
+        self, application_id: str, version_id: str
+    ) -> VersionInfoResponse:
+        version = self.database.get_version(version_id)
+        if not version or version.app_id != application_id:
+ 
