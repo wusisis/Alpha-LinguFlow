@@ -371,4 +371,43 @@ class ApplicationView:
             )
         except Exception as e:
             return ItemUpdateResponse(
-                success=Fal
+                success=False,
+                message=str(e),
+            )
+
+    @router.delete("/applications/{application_id}")
+    def delete_app(self, application_id: str) -> ItemDeleteResponse:
+        """
+        Delete an application by its ID.
+
+        Args:
+            application_id (str): The ID of the application to be deleted.
+
+        Returns:
+            ItemDeleteResponse: A response indicating the success or failure of the deletion.
+        """
+        try:
+            deleted_at = datetime.utcnow()
+            self.database.update_application(
+                application_id,
+                {
+                    "updated_at": deleted_at,
+                    "deleted_at": deleted_at,
+                },
+            )
+            return ItemDeleteResponse(
+                success=True,
+                message=f"Application {application_id} has been deleted.",
+            )
+        except Exception as e:
+            return ItemDeleteResponse(
+                success=False,
+                message=str(e),
+            )
+
+    @router.post("/applications/{application_id}/versions/{version_id}/async_run")
+    def async_run_app_version(
+        self,
+        request: Request,
+        application_id: str,
+        version_id: str
