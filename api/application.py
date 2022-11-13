@@ -471,4 +471,38 @@ class ApplicationView:
                 representing the versions of the specified application.
         """
         versions = self.database.list_versions(application_id)
-        return VersionList
+        return VersionListResponse(
+            versions=[
+                ApplicationVersionInfo(
+                    id=version.id,
+                    name=version.name,
+                    user=version.user,
+                    app_id=version.app_id,
+                    created_at=int(version.created_at.timestamp()),
+                    updated_at=int(version.updated_at.timestamp()),
+                    metadata=None,
+                    configuration=None,
+                )
+                for version in versions
+            ]
+        )
+
+    @router.post("/applications/{application_id}/versions")
+    def create_app_version(
+        self,
+        request: Request,
+        application_id: str,
+        version: ApplicationVersionCreate,
+    ) -> VersionCreateResponse:
+        """
+        Create a new application version.
+
+        Args:
+            application_id (str): The ID of the application.
+            version (ApplicationVersionCreate): The details of the new application version.
+
+        Returns:
+            VersionCreateResponse: The response containing the ID of the created version.
+        """
+        created_at = datetime.utcnow()
+   
