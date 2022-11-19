@@ -605,4 +605,32 @@ class ApplicationView:
             application_id (str): The ID of the application to update.
             version_id (str): The ID of the version to set as active.
 
-   
+        Returns:
+            ItemUpdateResponse: An ItemUpdateResponse indicating the success or failure of the update.
+        """
+        try:
+            updated_at = datetime.utcnow()
+            self.database.update_application(
+                application_id,
+                {
+                    "active_version": version_id,
+                    "updated_at": updated_at,
+                },
+            )
+            return ItemUpdateResponse(
+                success=True,
+                message=f"Application {application_id}'s active version updated.",
+            )
+        except Exception as e:
+            return ItemUpdateResponse(
+                success=False,
+                message=str(e),
+            )
+
+    @router.get("/ping")
+    def ping(self) -> dict:
+        return {"message": "pong"}
+
+    @router.get("/me")
+    def me(self, request: Request) -> User:
+        return User(user=request.state.user)
