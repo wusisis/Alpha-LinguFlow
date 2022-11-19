@@ -572,4 +572,37 @@ class ApplicationView:
         """
         try:
             deleted_at = datetime.utcnow()
-            app = self.database.get_
+            app = self.database.get_application(application_id)
+            if app.active_version == version_id:
+                return ItemDeleteResponse(
+                    success=False,
+                    message=f"Active version can not be deleted.",
+                )
+
+            self.database.update_version(
+                version_id,
+                {
+                    "updated_at": deleted_at,
+                    "deleted_at": deleted_at,
+                },
+            )
+            return ItemDeleteResponse(
+                success=True,
+                message=f"Version {version_id} has been deleted.",
+            )
+        except Exception as e:
+            return ItemDeleteResponse(
+                success=False,
+                message=str(e),
+            )
+
+    @router.put("/applications/{application_id}/versions/{version_id}/active")
+    def active_app_version(self, application_id: str, version_id: str):
+        """
+        Update the active version of an application in the database.
+
+        Args:
+            application_id (str): The ID of the application to update.
+            version_id (str): The ID of the version to set as active.
+
+   
