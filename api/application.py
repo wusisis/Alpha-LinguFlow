@@ -538,4 +538,38 @@ class ApplicationView:
         """
         try:
             updated_at = datetime.utcnow()
-         
+            self.database.update_version(
+                version_id,
+                {
+                    "name": metadata.name,
+                    "meta": metadata.metadata,
+                    "updated_at": updated_at,
+                },
+            )
+            return ItemUpdateResponse(
+                success=True,
+                message=f"Version {version_id}'s metadata updated.",
+            )
+        except Exception as e:
+            return ItemUpdateResponse(
+                success=False,
+                message=str(e),
+            )
+
+    @router.delete("/applications/{application_id}/versions/{version_id}")
+    def delete_app_version(
+        self, application_id: str, version_id: str
+    ) -> ItemDeleteResponse:
+        """
+        Delete a specific version of an application.
+
+        Args:
+            application_id (str): The ID of the application.
+            version_id (str): The ID of the version to be deleted.
+
+        Returns:
+            ItemDeleteResponse: An object indicating whether the deletion was successful.
+        """
+        try:
+            deleted_at = datetime.utcnow()
+            app = self.database.get_
