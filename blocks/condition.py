@@ -53,3 +53,12 @@ class ListCondition(BaseBlock):
 
     ```
     node = ListCondition(ListIsEmpty())
+    assert node([])
+    ```
+    """
+
+    def __init__(self, comparator: ListComparator):
+        self.comparator = comparator
+
+    def __call__(self, input: list) -> bool:
+        return self.comparator(input)
