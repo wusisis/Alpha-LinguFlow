@@ -69,4 +69,40 @@ class AsyncInvoker:
         name = config["name"]
         cls = self.resolver.lookup(name)
         if cls is None:
-            raise NodeConstructError(f
+            raise NodeConstructError(f"name {name} not found")
+        elif self.resolver.is_abstract(cls):
+            raise NodeConstructError(
+                f"{name} is an abstract type and can NOT be constructed"
+            )
+        properties = {}
+        if not isinstance(config, dict):
+            slots = config.slots
+            if slots is None:
+                slots = {}
+        else:
+            slots = config.get("slots") or {}
+        for p, v in slots.items():
+            if isinstance(v, dict):
+                properties[p] = self.construct_graph_node(v)
+            elif isinstance(v, list):
+                properties[p] = [
+                    self.construct_graph_node(x) if isinstance(x, dict) else x
+                    for x in v
+                ]
+            else:
+                properties[p] = v
+
+        try:
+            return cls(**properties)
+        except Exception as e:
+            raise NodeConstructError(f"construct {name} failed: {str(e)}") from e
+
+    def initialize_graph(
+        self, configuration: dict, skip_validation: bool = False
+    ) -> Graph:
+        """
+        Initialize a graph based on the given configuration.
+
+        Args:
+            configuration (dict): The configuration for the graph, including nodes and edges.
+            skip_validation (bo
