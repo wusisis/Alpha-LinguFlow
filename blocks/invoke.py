@@ -140,4 +140,35 @@ class AsyncInvoker:
             input (Union[str, dict, list]): The input data for the application,
                 which can be a string, dictionary, or list.
             app_id (str): The ID of the application to invoke.
-            version_id (str): The version to invok
+            version_id (str): The version to invoke, by default the active_version of
+                the application will be used.
+
+        Returns:
+            str: The ID of the interaction created for this invocation.
+        """
+        app = self.database.get_application(app_id)
+        if not app:
+            raise ApplicationNotFound(app_id)
+        if not version_id:
+            if not app.active_version:
+                raise NoActiveVersion(app_id)
+            version_id = app.active_version
+        version = self.database.get_version(version_id)
+        if not version:
+            raise VersionnNotFound(version_id)
+        graph = self.initialize_graph(version.configuration)
+        if type(input) != graph.input_type():
+            raise ApplicationInputTypeMismatch(graph.input_type(), type(input))
+
+        _id = str(uuid.uuid4())
+        created_at = datetime.utcnow()
+        self.database.create_interaction(
+            Interaction(
+                id=_id,
+                user=user,
+                app_id=app_id,
+                version_id=version_id,
+                created_at=created_at,
+                updated_at=created_at,
+                output=None,
+                data=None,
