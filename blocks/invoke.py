@@ -105,4 +105,39 @@ class AsyncInvoker:
 
         Args:
             configuration (dict): The configuration for the graph, including nodes and edges.
-            skip_validation (bo
+            skip_validation (bool, optional): Whether to skip validation of the graph. Defaults to False.
+
+        Returns:
+            Graph: The initialized graph.
+        """
+        edges = []
+        for edge in configuration["edges"]:
+            edges.append(
+                Edge(
+                    source=edge.get("src_block"),
+                    sink=edge.get("dst_block"),
+                    port=edge.get("dst_port"),
+                    case=edge.get("case"),
+                )
+            )
+        nodes = {}
+        for node in configuration["nodes"]:
+            nodes[node.get("id")] = self.construct_graph_node(node)
+        return Graph(nodes, edges, skip_validation)
+
+    def invoke(
+        self,
+        user: str,
+        app_id: str,
+        input: Union[str, dict, list],
+        version_id: Optional[str] = None,
+        session_id: Optional[str] = None,
+    ) -> str:
+        """
+        Invoke the specified application with the given input.
+
+        Args:
+            input (Union[str, dict, list]): The input data for the application,
+                which can be a string, dictionary, or list.
+            app_id (str): The ID of the application to invoke.
+            version_id (str): The version to invok
