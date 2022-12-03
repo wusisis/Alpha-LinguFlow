@@ -202,4 +202,45 @@ class AsyncInvoker:
             except Exception as e:
                 r = h.render(e)
                 self.database.update_interaction(
-              
+                    _id,
+                    {
+                        "error": {
+                            "status_code": r.status_code,
+                            "content": json.loads(r.body),
+                        },
+                    },
+                )
+
+        task = async_task
+        if app.langfuse_public_key and app.langfuse_secret_key:
+            task = langfuse(
+                public_key=app.langfuse_public_key,
+                secret_key=app.langfuse_secret_key,
+            )(async_task)
+        threading.Thread(target=task, kwargs={"input": input}).start()
+
+        return _id
+
+    def poll(self, interaction_id: str) -> Interaction:
+        """
+        Retrieve invoke result by the interaction id the invoke method returned.
+
+        Args:
+            interaction_id (str): The ID of the interaction to retrieve.
+
+        Returns:
+            Interaction: The retrieved interaction object.
+        """
+        return self.database.get_interaction(interaction_id)
+
+
+class HashableDict(dict):
+    """
+    HashableDict is a dict, but makes it hashable.
+    """
+
+    def __hash__(self):
+        return hash(tuple(sorted(self.items())))
+
+
+class Has
