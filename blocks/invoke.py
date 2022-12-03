@@ -243,4 +243,49 @@ class HashableDict(dict):
         return hash(tuple(sorted(self.items())))
 
 
-class Has
+class HashableList(list):
+    """
+    HashableList is a list, but makes it hashable.
+    """
+
+    def __hash__(self):
+        return hash(tuple(sorted(self)))
+
+
+@functools.lru_cache
+@span(
+    name="invoke",
+    input_fn=lambda _, kwargs: {"app_id": kwargs["app_id"], "input": kwargs["input"]},
+)
+def invoke(
+    *,
+    user: str,
+    app_id: str,
+    input: Union[str, HashableDict, HashableList],
+    session_id: Optional[str] = None,
+    timeout: Optional[int] = 300,
+    interval: Optional[int] = 10,
+) -> str:
+    env = Env()
+    env.read_env()
+
+    db = Database(create_engine(env.str("DATABASE_URL")))
+    invoker = AsyncInvoker(db)
+
+    interaction_id = invoker.invoke(
+        user=user, app_id=app_id, input=input, session_id=session_id
+    )
+    while timeout > 0:
+        interaction = invoker.poll(interaction_id)
+        if not interaction:
+            raise InteractionNotFound(interaction_id)
+        if interaction.error:
+            raise InteractionError(interaction.error)
+        if interaction.output:
+            return interaction.output
+        time.sleep(interval)
+        timeout -= interval
+    raise TimeoutError(f"timeout on polling interaction {interaction_id}")
+
+
+@block(na
