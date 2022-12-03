@@ -172,3 +172,34 @@ class AsyncInvoker:
                 updated_at=created_at,
                 output=None,
                 data=None,
+                error=None,
+            )
+        )
+
+        @trace(id=_id, name=app.name, user_id=user, session_id=session_id)
+        def async_task(input: Union[str, dict, list]) -> str:
+            h = AsyncExceptionHandler()
+            register_exception_handlers(h)
+            try:
+                output = graph.run(
+                    input,
+                    context={
+                        "app_id": app_id,
+                        "version_id": version_id,
+                        "interaction_id": _id,
+                        "user": user,
+                        "session_id": session_id,
+                    },
+                    node_callback=lambda *args: self.database.update_interaction(
+                        _id,
+                        {
+                            "data": graph.data,
+                        },
+                    ),
+                )
+                self.database.update_interaction(_id, {"output": output})
+                return output
+            except Exception as e:
+                r = h.render(e)
+                self.database.update_interaction(
+              
