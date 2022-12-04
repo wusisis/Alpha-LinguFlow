@@ -288,4 +288,44 @@ def invoke(
     raise TimeoutError(f"timeout on polling interaction {interaction_id}")
 
 
-@block(na
+@block(name="Text_Invoke", kind="invoke")
+class Invoke(BaseBlock):
+    """
+    Invoke invokes application with str input.
+    """
+
+    def __init__(self, app_id: str, timeout: int = 300):
+        self.app_id = app_id
+        self.timeout = timeout
+
+    def __call__(self, input: str) -> str:
+        return invoke(
+            user=self.context["user"] + "@" + self.context["interaction_id"][:8],
+            app_id=self.app_id,
+            input=input,
+            timeout=self.timeout,
+            session_id=self.context.get("session_id"),
+        )
+
+
+@block(name="List_Invoke", kind="invoke")
+class InvokeWithList(BaseBlock):
+    """
+    InvokeWithList invokes application with list input.
+    """
+
+    def __init__(self, app_id: str, timeout: int = 300):
+        self.app_id = app_id
+        self.timeout = timeout
+
+    def __call__(self, input: list) -> str:
+        return invoke(
+            user=self.context["user"] + "@" + self.context["interaction_id"][:8],
+            app_id=self.app_id,
+            input=input,
+            timeout=self.timeout,
+            session_id=self.context.get("session_id"),
+        )
+
+
+@block(name="Dict_Invoke", 
