@@ -328,4 +328,21 @@ class InvokeWithList(BaseBlock):
         )
 
 
-@block(name="Dict_Invoke", 
+@block(name="Dict_Invoke", kind="invoke")
+class InvokeWithDict(BaseBlock):
+    """
+    Invoke invokes application with dict input.
+    """
+
+    def __init__(self, app_id: str, timeout: int = 300):
+        self.app_id = app_id
+        self.timeout = timeout
+
+    def __call__(self, input: dict) -> str:
+        return invoke(
+            user=self.context["user"] + "@" + self.context["interaction_id"][:8],
+            app_id=self.app_id,
+            input=input,
+            timeout=self.timeout,
+            session_id=self.context.get("session_id"),
+        )
