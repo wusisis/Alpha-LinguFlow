@@ -30,4 +30,30 @@ class JoinList(BaseBlock):
         self.template = template
         self.delimiter = delimiter
 
-    def __call__(self, **kwargs)
+    def __call__(self, **kwargs) -> str:
+        if len(kwargs) == 0:
+            return None
+
+        xs = []
+        for t in zip(*kwargs.values()):
+            xs.append(self.template.format(**dict(zip(kwargs.keys(), t))))
+        return self.delimiter.join(xs)
+
+
+@block(name="List_Concat_to_List", kind="data process")
+class ConcatList(BaseBlock):
+    """
+    ConcatList concats two str list into one.
+
+    Example:
+
+    ```
+    node = ConcatList()
+    result = node(["a", "b"], ["1", "2"])
+    ```
+
+    The result is `["a", "b", "1", "2"]`.
+    """
+
+    def __call__(self, seq1: list, seq2: list) -> list:
+        return seq1 + seq2
