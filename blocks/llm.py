@@ -17,4 +17,41 @@ class LLMChain(BaseBlock):
     """
 
     def __init__(
-        self, model: BaseLanguageModel, prompt_template_type: S
+        self, model: BaseLanguageModel, prompt_template_type: StringPromptTemplate
+    ):
+        self.chain = langchain.chains.LLMChain(llm=model, prompt=prompt_template_type)
+
+    @span(name="LLM Chain")
+    def __call__(self, text: str, **kwargs) -> str:
+        return self.chain.predict(text=text, **kwargs)
+
+
+@block(name="Chat_LLM", kind="llm")
+class ChatLLMChain(BaseBlock):
+    """
+    ChatLLM is a block that uses a chat model to generate a response to a given message.
+
+    Attributes:
+        model: BaseChatModel from LangChain.
+        prompt_template_type: BaseChatPromptTemplate from LangChain which contains a system_template to use.
+    """
+
+    def __init__(
+        self, model: BaseChatModel, prompt_template_type: BaseChatPromptTemplate
+    ):
+        self.chat = model
+        self.prompt = prompt_template_type
+
+    @span(name="ChatLLM")
+    def __call__(self, messages: list, **kwargs) -> str:
+        """
+        Generate a response to a given message.
+
+        Args:
+            messages: A list of string messages.
+            **kwargs: Additional arguments to pass to the prompt template.
+        """
+        ms = []
+        for i, m in enumerate(messages):
+            if not isinstance(m, str):
+                raise TypeError(f"messages[{i}] must be a st
