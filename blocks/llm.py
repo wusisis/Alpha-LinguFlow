@@ -54,4 +54,11 @@ class ChatLLMChain(BaseBlock):
         ms = []
         for i, m in enumerate(messages):
             if not isinstance(m, str):
-                raise TypeError(f"messages[{i}] must be a st
+                raise TypeError(f"messages[{i}] must be a string, but got {type(m)}")
+            if i % 2 == 0:
+                ms.append(HumanMessage(content=m))
+            else:
+                ms.append(AIMessage(content=m))
+        prompt_value = self.prompt.format_prompt(messages=ms, **kwargs)
+        response = self.chat.generate_prompt([prompt_value])
+        return response.generations[0][0].text
