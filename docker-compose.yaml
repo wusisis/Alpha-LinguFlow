@@ -1,0 +1,15 @@
+services:
+  api:
+    image: pingcap/linguflow-api
+    ports:
+      - 8000:8000
+    environment:
+      - DATABASE_URL
+  ui:
+    image: pingcap/linguflow-ui
+    ports:
+      - 80:80
+    environment:
+      - VITE_ENDPOINT_BASE_URL=/linguflow-api
+    links:
+      - api:linguflow-a
