@@ -12,4 +12,6 @@ services:
     environment:
       - VITE_ENDPOINT_BASE_URL=/linguflow-api
     links:
-      - api:linguflow-a
+      - api:linguflow-api
+    depends_on:
+      - api
