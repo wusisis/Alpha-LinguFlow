@@ -25,4 +25,36 @@ A Block represents a node within the [Directed Acyclic Graph (DAG)](https://en.w
 
 LinguFlow offers essential Block categories necessary for building LinguFlow applications, including:
 - **Input & Output Category**: For receiving inputs and sending outputs.
-- **D
+- **Data Process Category**: For manipulating and processing data.
+- **Condition Category**: For making decisions based on certain conditions.
+- **LLM Category**: For integrating Large Language Model functionalities.
+- **Invoke Category**: For calling other blocks or applications within LinguFlow.
+- **Tools Category**: For utilizing third-party tools or services.
+
+### Input & Output Category
+
+#### Text_Input
+
+- **Description**: Defines the input type for a LinguFlow App. It allows sending information of `text` type to the LinguFlow application during an API call.
+- **Outport**: `text`
+- **Example**:
+
+```markdown
+- Outport: "Who are you?"
+```
+
+#### List_Input
+
+- **Description**: Defines the input type for a LinguFlow App. It supports sending information of `list` type to the LinguFlow application during an API call.
+- **Outport**: `list`
+- **Example**:
+
+```markdown
+- Outport: ["hi", "Hello, can I help you?", "Who are you?"]
+```
+
+#### Dict_Input
+
+- **Description**: Defines the input type for a LinguFlow App. It facilitates sending information of `dict` type to the LinguFlow application during an API call.
+- **Outport**: `dict`
+- **Example**:
