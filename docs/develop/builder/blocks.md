@@ -58,3 +58,49 @@ LinguFlow offers essential Block categories necessary for building LinguFlow app
 - **Description**: Defines the input type for a LinguFlow App. It facilitates sending information of `dict` type to the LinguFlow application during an API call.
 - **Outport**: `dict`
 - **Example**:
+
+```markdown
+- Outport: {"key_1": "value_1", "key_2": "value_2"}
+```
+
+#### Text_Output
+
+- **Description**: Specifies the output type for a LinguFlow App. After the LinguFlow application has finished running, it outputs a result of `text` type.
+- **Inport**: `text`
+- **Example**:
+
+```markdown
+- Inport: "I'm LinguFlow."
+```
+
+### Data Processing Category
+
+#### Dict_KeySelect_to_Text
+
+- **Description**: Selects a specific `key`'s `value` from a `dict`.
+- **Inport**: `dict`
+- **Outport**: `text`
+- **Parameters**:
+    - **Key**: Specifies a particular `key`.
+- **Example**:
+
+```markdown
+- Inport: {"key_1": "value_1", "key_2": "value_2"}
+- Parameters: key="key_1"
+- Outport: "value_1"
+```
+
+#### List_Join_to_Text
+
+- **Description**: Merges a `list` into a single `text` string. The `list` typically contains multiple `text` elements.
+- **Inport**: Supports multiple inports, each corresponding to a `list`.
+- **Outport**: Merged `text`
+- **Parameters**:
+    - **Template**: Describes how to render each list element.
+    - **Delimiter**: Describes how to concatenate the rendered elements.
+- **Example**:
+
+```markdown
+- Inport: ["text 1", "text 2", "text 3"]
+- Parameters:
+    - template="
