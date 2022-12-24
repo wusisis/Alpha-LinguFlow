@@ -103,4 +103,57 @@ LinguFlow offers essential Block categories necessary for building LinguFlow app
 ```markdown
 - Inport: ["text 1", "text 2", "text 3"]
 - Parameters:
-    - template="
+    - template="--{input}--"
+    - delimiter='\n'
+- Outport: "--text 1--\n--text 2--\n--text 3--\n"
+```
+
+#### List_Concat_to_List
+
+- **Description**: Concatenates two `lists` in sequence into a single `list`.
+- **Inport**:
+    - **seq1**: `list`
+    - **seq2**: `list`
+- **Outport**: Concatenated `list`.
+- **Example**:
+
+```markdown
+- Inport: ["a", "b"], ["1", "2"]
+- Outport: ["a", "b", "1", "2"]
+```
+
+#### Text_Join_to_Dict
+
+- **Description**: Combines multiple `texts` into a `dict`.
+- **Inport**: Supports multiple inports, each corresponding to a `text`.
+- **Outport**: Combined `dict`.
+- **Example**:
+
+```markdown
+- Inport:
+    - Inport name: "a", value: "b"
+    - Inport name: "1", value: "2"
+- Outport: {"a": "b", "1": "2"}
+```
+
+#### Text_Split_to_List
+
+- **Description**: Parses `text` into a `list` based on specified rules.
+- **Inport**: `text`
+- **Outport**: `list`
+- **Parameters**:
+    - **Delim**: The delimiter character in the text.
+    - **Prefix**: Trims a prefix from each element.
+    - **Suffix**: Trims a suffix from each element.
+- **Example**:
+
+```markdown
+- Inport: "|abc-\n|def-\n|ghi-\n"
+- Parameters:
+    - delim='\n'
+    - prefix='|'
+    - suffix='-'
+- Outport: ["abc", "def", "ghi"]
+```
+
+### Co
