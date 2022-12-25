@@ -156,4 +156,47 @@ LinguFlow offers essential Block categories necessary for building LinguFlow app
 - Outport: ["abc", "def", "ghi"]
 ```
 
-### Co
+### Condition Category
+
+#### Text_Condition
+
+- **Description**: Evaluates a `text` input and outputs a boolean result based on the evaluation.
+- **Inport**: `text`
+- **Outport**: `boolean`
+- **Parameters**:
+    - **Comparator**: Supports text evaluation logic, including "Text Equals", "Text Contains", "Text Has Prefix", "Text Has Suffix". Outputs "True" if the condition is met, "False" otherwise.
+- **Example**:
+
+```markdown
+- Inport: "success"
+- Parameters:
+    - comparator: Text_Equal_With
+        - value: "success"
+- Outport: "True"
+```
+
+#### List_Condition
+
+- **Description**: Evaluates a `list` input and outputs a boolean result based on the evaluation.
+- **Inport**: `list`
+- **Outport**: `boolean`
+- **Parameters**:
+    - **Comparator**: Supports list evaluation logic, including "List Contains", "List Is Empty". Outputs "True" if the condition is met, "False" otherwise.
+- **Example**:
+
+```markdown
+- Inport: ["abc", "def", "ghi"]
+- Parameters:
+    - comparator: List_Is_Empty
+- Outport: "false"
+```
+
+### LLM Category
+
+#### LLM
+
+- **Description**: Interacts with an LLM.
+- **Inport**: Default inport is `text`. Additional inports can be created for input, which can be referenced in the template by inserting the inport name.
+- **Outport**: `text`
+- **Parameters**:
+    - **Mod
