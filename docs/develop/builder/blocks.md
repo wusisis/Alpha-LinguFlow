@@ -199,4 +199,46 @@ LinguFlow offers essential Block categories necessary for building LinguFlow app
 - **Inport**: Default inport is `text`. Additional inports can be created for input, which can be referenced in the template by inserting the inport name.
 - **Outport**: `text`
 - **Parameters**:
-    - **Mod
+    - **Model**: Currently supports OpenAI's series of language models.
+    - **Prompt Template Type**: Currently supports Zero_Shot_Prompt_Template and Few_Shot_Prompt_Template.
+- **Example**:
+
+```markdown
+- Inport: "who are you?"
+- Parameters:
+    - model: OpenAI_Chat_LLM
+        - openai_api_key: {key}
+        - temperature: 0
+        - max_tokens: 4096
+        - model_name: "gpt-3.5-turbo"
+    - prompt_template_type: Zero_Shot_Prompt_Template
+        - prompt_template: "you are a useful assistant.\n question: {text}"
+- Outport: "I'm LinguFlow."
+```
+
+### Invoke Category
+
+#### Text_Invoke
+
+- **Description**: Invokes another LinguFlow application, transferring `text` type content to it.
+- **Inport**: `text`
+- **Outport**: `text`
+- **Parameters**:
+    - **app_id**: Enter the ID of the LinguFlow application you wish to invoke.
+    - **timeout**: Invocation timeout in seconds.
+- **Example**:
+
+```markdown
+- Inport: "who are you?"
+- Parameters:
+    - app_id: {id}
+    - timeout: 300
+- Outport: "I'm LinguFlow."
+```
+
+#### List_Invoke
+
+- **Description**: Invokes another LinguFlow application, transferring `list` type content to it.
+- **Inport**: `list`
+- **Outport**: `text`
+- **Parameters**
