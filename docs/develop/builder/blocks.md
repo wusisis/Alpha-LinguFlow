@@ -282,4 +282,14 @@ LinguFlow offers essential Block categories necessary for building LinguFlow app
 - **Parameters**:
     - **search_engine_id**: Enter your [Programmable Search Engine ID](https://developers.google.com/custom-search/v1/introduction).
     - **key**: Enter your [API Key](https://developers.google.com/custom-search/v1/introduction).
-    - **top_k**: Specify the n
+    - **top_k**: Specify the number of results to retrieve.
+- **Example**:
+
+```markdown
+- Inport: "who are you?"
+- Parameters:
+    - search_engine_id: {id}
+    - key: {key}
+    - top_k: 2
+- Outport: ["I'm LinguFlow.", "I'm LinguFlow."]
+```
