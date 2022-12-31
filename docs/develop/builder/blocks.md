@@ -241,4 +241,45 @@ LinguFlow offers essential Block categories necessary for building LinguFlow app
 - **Description**: Invokes another LinguFlow application, transferring `list` type content to it.
 - **Inport**: `list`
 - **Outport**: `text`
-- **Parameters**
+- **Parameters**:
+    - **app_id**: Enter the ID of the LinguFlow application you wish to invoke.
+    - **timeout**: Invocation timeout in seconds.
+- **Example**:
+
+```markdown
+- Inport: ["hi", "Hello, can I help you?", "who are you?"]
+- Parameters:
+    - app_id: {id}
+    - timeout: 300
+- Outport: "I'm LinguFlow."
+```
+
+#### Dict_Invoke
+
+- **Description**: Invokes another LinguFlow application, transferring `dict` type content to it.
+- **Inport**: `dict`
+- **Outport**: `text`
+- **Parameters**:
+    - **app_id**: Enter the ID of the LinguFlow application you wish to invoke.
+    - **timeout**: Invocation timeout in seconds.
+- **Example**:
+
+```markdown
+- Inport: {"key_1": "value_1", "key_2": "value_2"}
+- Parameters:
+    - app_id: {id}
+    - timeout: 300
+- Outport: "value_3"
+```
+
+### Tools Category
+
+#### Google_Search
+
+- **Description**: Queries results using the Google search engine.
+- **Inport**: `text`
+- **Outport**: `list`
+- **Parameters**:
+    - **search_engine_id**: Enter your [Programmable Search Engine ID](https://developers.google.com/custom-search/v1/introduction).
+    - **key**: Enter your [API Key](https://developers.google.com/custom-search/v1/introduction).
+    - **top_k**: Specify the n
