@@ -44,4 +44,29 @@
 "@algolia/cache-in-memory@4.22.1":
   version "4.22.1"
   resolved "https://registry.yarnpkg.com/@algolia/cache-in-memory/-/cache-in-memory-4.22.1.tgz#858a3d887f521362e87d04f3943e2810226a0d71"
-  integrity sha512-ve+6Ac2LhwpufuWavM/aHjLoNz/Z/sYSgNIXsinGof
+  integrity sha512-ve+6Ac2LhwpufuWavM/aHjLoNz/Z/sYSgNIXsinGofWOysPilQZPUetqLj8vbvi+DHZZaYSEP9H5SRVXnpsNNw==
+  dependencies:
+    "@algolia/cache-common" "4.22.1"
+
+"@algolia/client-account@4.22.1":
+  version "4.22.1"
+  resolved "https://registry.yarnpkg.com/@algolia/client-account/-/client-account-4.22.1.tgz#a7fb8b66b9a4f0a428e1426b2561144267d76d43"
+  integrity sha512-k8m+oegM2zlns/TwZyi4YgCtyToackkOpE+xCaKCYfBfDtdGOaVZCM5YvGPtK+HGaJMIN/DoTL8asbM3NzHonw==
+  dependencies:
+    "@algolia/client-common" "4.22.1"
+    "@algolia/client-search" "4.22.1"
+    "@algolia/transporter" "4.22.1"
+
+"@algolia/client-analytics@4.22.1":
+  version "4.22.1"
+  resolved "https://registry.yarnpkg.com/@algolia/client-analytics/-/client-analytics-4.22.1.tgz#506558740b4d49b1b1e3393861f729a8ce921851"
+  integrity sha512-1ssi9pyxyQNN4a7Ji9R50nSdISIumMFDwKNuwZipB6TkauJ8J7ha/uO60sPJFqQyqvvI+px7RSNRQT3Zrvzieg==
+  dependencies:
+    "@algolia/client-common" "4.22.1"
+    "@algolia/client-search" "4.22.1"
+    "@algolia/requester-common" "4.22.1"
+    "@algolia/transporter" "4.22.1"
+
+"@algolia/client-common@4.22.1":
+  version "4.22.1"
+  resolved "https://registry.yarnpkg.com/@algolia/client-common/-/client-common-4.22.1.tgz#042b19c1b6157c485fa1b551349ab3
