@@ -397,4 +397,25 @@
 "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@^7.24.1":
   version "7.24.1"
   resolved "https://registry.yarnpkg.com/@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression/-/plugin-bugfix-safari-id-destructuring-collision-in-function-expression-7.24.1.tgz#b645d9ba8c2bc5b7af50f0fe949f9edbeb07c8cf"
-  integrity sha512-y4HqEnkelJIOQGd+3g1bTeKsA5c6qM7eOn7VggGVbBc0y8MLSKHacwcIE2PplNlQSj0PqS9rr
+  integrity sha512-y4HqEnkelJIOQGd+3g1bTeKsA5c6qM7eOn7VggGVbBc0y8MLSKHacwcIE2PplNlQSj0PqS9rrXL/nkPVK+kUNg==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
+
+"@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining@^7.24.1":
+  version "7.24.1"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining/-/plugin-bugfix-v8-spread-parameters-in-optional-chaining-7.24.1.tgz#da8261f2697f0f41b0855b91d3a20a1fbfd271d3"
+  integrity sha512-Hj791Ii4ci8HqnaKHAlLNs+zaLXb0EzSDhiAWp5VNlyvCNymYfacs64pxTxbH1znW/NcArSmwpmG9IKE/TUVVQ==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
+    "@babel/helper-skip-transparent-expression-wrappers" "^7.22.5"
+    "@babel/plugin-transform-optional-chaining" "^7.24.1"
+
+"@babel/plugin-bugfix-v8-static-class-fields-redefine-readonly@^7.24.1":
+  version "7.24.1"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-bugfix-v8-static-class-fields-redefine-readonly/-/plugin-bugfix-v8-static-class-fields-redefine-readonly-7.24.1.tgz#1181d9685984c91d657b8ddf14f0487a6bab2988"
+  integrity sha512-m9m/fXsXLiHfwdgydIFnpk+7jlVbnvlK5B2EKiPdLUb6WX654ZaaEWJUjk8TftRbZpK0XibovlLWX4KIZhV6jw==
+  dependencies:
+    "@babel/helper-environment-visitor" "^7.22.20"
+    "@babel/helper-plugin-utils" "^7.24.0"
+
+"@babel/plugin-p
