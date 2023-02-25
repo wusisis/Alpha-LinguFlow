@@ -678,4 +678,26 @@
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-exponentiation-operator/-/plugin-transform-exponentiation-operator-7.24.1.tgz#6650ebeb5bd5c012d5f5f90a26613a08162e8ba4"
   integrity sha512-U1yX13dVBSwS23DEAqU+Z/PkwE9/m7QQy8Y9/+Tdb8UWYaGNDYwTLi19wqIAiROr8sXVum9A/rtiH5H0boUcTw==
   dependencies:
-    "@babel/helper-builder-binary-assignment-operator-visitor" "^7.
+    "@babel/helper-builder-binary-assignment-operator-visitor" "^7.22.15"
+    "@babel/helper-plugin-utils" "^7.24.0"
+
+"@babel/plugin-transform-export-namespace-from@^7.24.1":
+  version "7.24.1"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-export-namespace-from/-/plugin-transform-export-namespace-from-7.24.1.tgz#f033541fc036e3efb2dcb58eedafd4f6b8078acd"
+  integrity sha512-Ft38m/KFOyzKw2UaJFkWG9QnHPG/Q/2SkOrRk4pNBPg5IPZ+dOxcmkK5IyuBcxiNPyyYowPGUReyBvrvZs7IlQ==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
+    "@babel/plugin-syntax-export-namespace-from" "^7.8.3"
+
+"@babel/plugin-transform-for-of@^7.24.1":
+  version "7.24.1"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-for-of/-/plugin-transform-for-of-7.24.1.tgz#67448446b67ab6c091360ce3717e7d3a59e202fd"
+  integrity sha512-OxBdcnF04bpdQdR3i4giHZNZQn7cm8RQKcSwA17wAAqEELo1ZOwp5FFgeptWUQXFyT9kwHo10aqqauYkRZPCAg==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
+    "@babel/helper-skip-transparent-expression-wrappers" "^7.22.5"
+
+"@babel/plugin-transform-function-name@^7.24.1":
+  version "7.24.1"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-function-name/-/plugin-transform-function-name-7.24.1.tgz#8cba6f7730626cc4dfe4ca2fa516215a0592b361"
+  integrity sha512
