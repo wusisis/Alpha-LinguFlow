@@ -765,3 +765,23 @@
 
 "@babel/plugin-transform-modules-umd@^7.24.1":
   version "7.24.1"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-modules-umd/-/plugin-transform-modules-umd-7.24.1.tgz#69220c66653a19cf2c0872b9c762b9a48b8bebef"
+  integrity sha512-tuA3lpPj+5ITfcCluy6nWonSL7RvaG0AOTeAuvXqEKS34lnLzXpDb0dcP6K8jD0zWZFNDVly90AGFJPnm4fOYg==
+  dependencies:
+    "@babel/helper-module-transforms" "^7.23.3"
+    "@babel/helper-plugin-utils" "^7.24.0"
+
+"@babel/plugin-transform-named-capturing-groups-regex@^7.22.5":
+  version "7.22.5"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-named-capturing-groups-regex/-/plugin-transform-named-capturing-groups-regex-7.22.5.tgz#67fe18ee8ce02d57c855185e27e3dc959b2e991f"
+  integrity sha512-YgLLKmS3aUBhHaxp5hi1WJTgOUb/NCuDHzGT9z9WTt3YG+CPRhJs6nprbStx6DnWM4dh6gt7SU3sZodbZ08adQ==
+  dependencies:
+    "@babel/helper-create-regexp-features-plugin" "^7.22.5"
+    "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-new-target@^7.24.1":
+  version "7.24.1"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-new-target/-/plugin-transform-new-target-7.24.1.tgz#29c59988fa3d0157de1c871a28cd83096363cc34"
+  integrity sha512-/rurytBM34hYy0HKZQyA0nHbQgQNFm4Q/BOc9Hflxi2X3twRof7NaE5W46j4kQitm7SvACVRXsa6N/tSZxvPug==
+  dependencies:
+    "@babel
