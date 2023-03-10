@@ -864,4 +864,25 @@
 
 "@babel/plugin-transform-property-literals@^7.24.1":
   version "7.24.1"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-property-literals/-/plugin-transform-property-literals-7.24.1.tgz#d6a9aeab96f03749f4eebeb0
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-property-literals/-/plugin-transform-property-literals-7.24.1.tgz#d6a9aeab96f03749f4eebeb0b6ea8e90ec958825"
+  integrity sha512-LetvD7CrHmEx0G442gOomRr66d7q8HzzGGr4PMHGr+5YIm6++Yke+jxj246rpvsbyhJwCLxcTn6zW1P1BSenqA==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
+
+"@babel/plugin-transform-react-constant-elements@^7.18.12":
+  version "7.24.1"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-constant-elements/-/plugin-transform-react-constant-elements-7.24.1.tgz#d493a0918b9fdad7540f5afd9b5eb5c52500d18d"
+  integrity sha512-QXp1U9x0R7tkiGB0FOk8o74jhnap0FlZ5gNkRIWdG3eP+SvMFg118e1zaWewDzgABb106QSKpVsD3Wgd8t6ifA==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
+
+"@babel/plugin-transform-react-display-name@^7.24.1":
+  version "7.24.1"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-display-name/-/plugin-transform-react-display-name-7.24.1.tgz#554e3e1a25d181f040cf698b93fd289a03bfdcdb"
+  integrity sha512-mvoQg2f9p2qlpDQRBC7M3c3XTr0k7cp/0+kFKKO/7Gtu0LSw16eKB+Fabe2bDT/UpsyasTBBkAnbdsLrkD5XMw==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
+
+"@babel/plugin-transform-react-jsx-development@^7.22.5":
+  version "7.22.5"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-trans
