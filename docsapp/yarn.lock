@@ -1283,4 +1283,33 @@
     webpack-bundle-analyzer "^4.9.0"
     webpack-dev-server "^4.15.1"
     webpack-merge "^5.9.0"
-    webpackba
+    webpackbar "^5.0.2"
+
+"@docusaurus/cssnano-preset@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@docusaurus/cssnano-preset/-/cssnano-preset-3.1.1.tgz#03a4cb8e6d41654d7ff5ed79fddd73fd224feea4"
+  integrity sha512-LnoIDjJWbirdbVZDMq+4hwmrTl2yHDnBf9MLG9qyExeAE3ac35s4yUhJI8yyTCdixzNfKit4cbXblzzqMu4+8g==
+  dependencies:
+    cssnano-preset-advanced "^5.3.10"
+    postcss "^8.4.26"
+    postcss-sort-media-queries "^4.4.1"
+    tslib "^2.6.0"
+
+"@docusaurus/logger@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@docusaurus/logger/-/logger-3.1.1.tgz#423e8270c00a57b1b3a0cc8a3ee0a4c522a68387"
+  integrity sha512-BjkNDpQzewcTnST8trx4idSoAla6zZ3w22NqM/UMcFtvYJgmoE4layuTzlfql3VFPNuivvj7BOExa/+21y4X2Q==
+  dependencies:
+    chalk "^4.1.2"
+    tslib "^2.6.0"
+
+"@docusaurus/mdx-loader@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@docusaurus/mdx-loader/-/mdx-loader-3.1.1.tgz#f79290abc5044bef1d7ecac4eccec887058b8e03"
+  integrity sha512-xN2IccH9+sv7TmxwsDJNS97BHdmlqWwho+kIVY4tcCXkp+k4QuzvWBeunIMzeayY4Fu13A6sAjHGv5qm72KyGA==
+  dependencies:
+    "@babel/parser" "^7.22.7"
+    "@babel/traverse" "^7.22.8"
+    "@docusaurus/logger" "3.1.1"
+    "@docusaurus/utils" "3.1.1"
+    "@docusaurus/utils-validation" "3.1.1
