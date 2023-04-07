@@ -1409,4 +1409,33 @@
 
 "@docusaurus/plugin-debug@3.1.1":
   version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@docusaurus/plugin-debug/-/plugin-debug-3.1.1.tgz#cee5aae1fef288fb93f6
+  resolved "https://registry.yarnpkg.com/@docusaurus/plugin-debug/-/plugin-debug-3.1.1.tgz#cee5aae1fef288fb93f68894db79a2612e313d3f"
+  integrity sha512-xWeMkueM9wE/8LVvl4+Qf1WqwXmreMjI5Kgr7GYCDoJ8zu4kD+KaMhrh7py7MNM38IFvU1RfrGKacCEe2DRRfQ==
+  dependencies:
+    "@docusaurus/core" "3.1.1"
+    "@docusaurus/types" "3.1.1"
+    "@docusaurus/utils" "3.1.1"
+    fs-extra "^11.1.1"
+    react-json-view-lite "^1.2.0"
+    tslib "^2.6.0"
+
+"@docusaurus/plugin-google-analytics@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@docusaurus/plugin-google-analytics/-/plugin-google-analytics-3.1.1.tgz#bfc58205b4fcaf3222e04f9c3542f3bef9804887"
+  integrity sha512-+q2UpWTqVi8GdlLoSlD5bS/YpxW+QMoBwrPrUH/NpvpuOi0Of7MTotsQf9JWd3hymZxl2uu1o3PIrbpxfeDFDQ==
+  dependencies:
+    "@docusaurus/core" "3.1.1"
+    "@docusaurus/types" "3.1.1"
+    "@docusaurus/utils-validation" "3.1.1"
+    tslib "^2.6.0"
+
+"@docusaurus/plugin-google-gtag@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@docusaurus/plugin-google-gtag/-/plugin-google-gtag-3.1.1.tgz#7e8b5aa6847a12461c104a65a335f4a45dae2f28"
+  integrity sha512-0mMPiBBlQ5LFHTtjxuvt/6yzh8v7OxLi3CbeEsxXZpUzcKO/GC7UA1VOWUoBeQzQL508J12HTAlR3IBU9OofSw==
+  dependencies:
+    "@docusaurus/core" "3.1.1"
+    "@docusaurus/types" "3.1.1"
+    "@docusaurus/utils-validation" "3.1.1"
+    "@types/gtag.js" "^0.0.12"
+    tslib "^2.6.
