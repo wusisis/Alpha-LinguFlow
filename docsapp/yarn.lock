@@ -1375,4 +1375,38 @@
 "@docusaurus/plugin-content-docs@3.1.1":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@docusaurus/plugin-content-docs/-/plugin-content-docs-3.1.1.tgz#f2eddebf351dd8dd504a2c26061165c519e1f964"
-  integrity sha512-lhFq4E874zw0UOH7ujzxnCayOyAt0f9YPVYSb9ohxrdCM8B4szxitUw9rIX4V9J
+  integrity sha512-lhFq4E874zw0UOH7ujzxnCayOyAt0f9YPVYSb9ohxrdCM8B4szxitUw9rIX4V9JLLHVoqIJb6k+lJJ1jrcGJ0A==
+  dependencies:
+    "@docusaurus/core" "3.1.1"
+    "@docusaurus/logger" "3.1.1"
+    "@docusaurus/mdx-loader" "3.1.1"
+    "@docusaurus/module-type-aliases" "3.1.1"
+    "@docusaurus/types" "3.1.1"
+    "@docusaurus/utils" "3.1.1"
+    "@docusaurus/utils-validation" "3.1.1"
+    "@types/react-router-config" "^5.0.7"
+    combine-promises "^1.1.0"
+    fs-extra "^11.1.1"
+    js-yaml "^4.1.0"
+    lodash "^4.17.21"
+    tslib "^2.6.0"
+    utility-types "^3.10.0"
+    webpack "^5.88.1"
+
+"@docusaurus/plugin-content-pages@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@docusaurus/plugin-content-pages/-/plugin-content-pages-3.1.1.tgz#05aec68c2abeac2140c7a16d4c5b506bf4d19fb2"
+  integrity sha512-NQHncNRAJbyLtgTim9GlEnNYsFhuCxaCNkMwikuxLTiGIPH7r/jpb7O3f3jUMYMebZZZrDq5S7om9a6rvB/YCA==
+  dependencies:
+    "@docusaurus/core" "3.1.1"
+    "@docusaurus/mdx-loader" "3.1.1"
+    "@docusaurus/types" "3.1.1"
+    "@docusaurus/utils" "3.1.1"
+    "@docusaurus/utils-validation" "3.1.1"
+    fs-extra "^11.1.1"
+    tslib "^2.6.0"
+    webpack "^5.88.1"
+
+"@docusaurus/plugin-debug@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@docusaurus/plugin-debug/-/plugin-debug-3.1.1.tgz#cee5aae1fef288fb93f6
