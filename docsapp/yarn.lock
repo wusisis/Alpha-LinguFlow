@@ -1553,4 +1553,33 @@
     "@docusaurus/core" "3.1.1"
     "@docusaurus/logger" "3.1.1"
     "@docusaurus/plugin-content-docs" "3.1.1"
-   
+    "@docusaurus/theme-common" "3.1.1"
+    "@docusaurus/theme-translations" "3.1.1"
+    "@docusaurus/utils" "3.1.1"
+    "@docusaurus/utils-validation" "3.1.1"
+    algoliasearch "^4.18.0"
+    algoliasearch-helper "^3.13.3"
+    clsx "^2.0.0"
+    eta "^2.2.0"
+    fs-extra "^11.1.1"
+    lodash "^4.17.21"
+    tslib "^2.6.0"
+    utility-types "^3.10.0"
+
+"@docusaurus/theme-translations@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@docusaurus/theme-translations/-/theme-translations-3.1.1.tgz#117e91ba5e3a8178cb59f3028bf41de165a508c1"
+  integrity sha512-xvWQFwjxHphpJq5fgk37FXCDdAa2o+r7FX8IpMg+bGZBNXyWBu3MjZ+G4+eUVNpDhVinTc+j6ucL0Ain5KCGrg==
+  dependencies:
+    fs-extra "^11.1.1"
+    tslib "^2.6.0"
+
+"@docusaurus/tsconfig@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@docusaurus/tsconfig/-/tsconfig-3.1.1.tgz#ee2297ea94f4059b69f4b9bff238c212eede65e9"
+  integrity sha512-FTBuY3KvaHfMVBgvlPmDQ+KS9Q/bYtVftq2ugou3PgBDJoQmw2aUZ4Sg15HKqLGbfIkxoy9t6cqE4Yw1Ta8Q1A==
+
+"@docusaurus/types@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@docusaurus/types/-/types-3.1.1.tgz#747c9dee8cf7c3b0e5ee7351bac5e9c4fdc7f259"
+  integrity sha512-grBqOLnubUecgKFXN9q3uit2HFbCxTWX4Fam3ZFbMN
