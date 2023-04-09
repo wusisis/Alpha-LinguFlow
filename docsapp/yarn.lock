@@ -1614,4 +1614,38 @@
 
 "@docusaurus/utils@3.1.1":
   version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@docusaurus/utils/-/utils-3.1.1.tgz#e822d14704e4b3bb451ca
+  resolved "https://registry.yarnpkg.com/@docusaurus/utils/-/utils-3.1.1.tgz#e822d14704e4b3bb451ca464a7cc56aea9b55a45"
+  integrity sha512-ZJfJa5cJQtRYtqijsPEnAZoduW6sjAQ7ZCWSZavLcV10Fw0Z3gSaPKA/B4micvj2afRZ4gZxT7KfYqe5H8Cetg==
+  dependencies:
+    "@docusaurus/logger" "3.1.1"
+    "@svgr/webpack" "^6.5.1"
+    escape-string-regexp "^4.0.0"
+    file-loader "^6.2.0"
+    fs-extra "^11.1.1"
+    github-slugger "^1.5.0"
+    globby "^11.1.0"
+    gray-matter "^4.0.3"
+    jiti "^1.20.0"
+    js-yaml "^4.1.0"
+    lodash "^4.17.21"
+    micromatch "^4.0.5"
+    resolve-pathname "^3.0.0"
+    shelljs "^0.8.5"
+    tslib "^2.6.0"
+    url-loader "^4.1.1"
+    webpack "^5.88.1"
+
+"@hapi/hoek@^9.0.0", "@hapi/hoek@^9.3.0":
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.3.0.tgz#8368869dcb735be2e7f5cb7647de78e167a251fb"
+  integrity sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==
+
+"@hapi/topo@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@hapi/topo/-/topo-5.1.0.tgz#dc448e332c6c6e37a4dc02fd84ba8d44b9afb012"
+  integrity sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==
+  dependencies:
+    "@hapi/hoek" "^9.0.0"
+
+"@jest/schemas@^29.6.3":
+  version
