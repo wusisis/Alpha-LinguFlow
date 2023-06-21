@@ -3035,4 +3035,28 @@ color-convert@^2.0.1:
 color-name@1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
-  integrity sha512-72fSenhMw2HZMTVHeCA9KCmpEIbzWiQsjN+BHcBbS9vr1mtt+vJjPdksIBNUmKAW8TFUDPJK5SUU3Q
+  integrity sha512-72fSenhMw2HZMTVHeCA9KCmpEIbzWiQsjN+BHcBbS9vr1mtt+vJjPdksIBNUmKAW8TFUDPJK5SUU3QhE9NEXDw==
+
+color-name@~1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
+  integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
+
+colord@^2.9.1:
+  version "2.9.3"
+  resolved "https://registry.yarnpkg.com/colord/-/colord-2.9.3.tgz#4f8ce919de456f1d5c1c368c307fe20f3e59fb43"
+  integrity sha512-jeC1axXpnb0/2nn/Y1LPuLdgXBLH7aDcHu4KEKfqw3CUhX7ZpfBSlPKyqXE6btIgEzfWtrX3/tyBCaCvXvMkOw==
+
+colorette@^2.0.10:
+  version "2.0.20"
+  resolved "https://registry.yarnpkg.com/colorette/-/colorette-2.0.20.tgz#9eb793e6833067f7235902fcd3b09917a000a95a"
+  integrity sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==
+
+combine-promises@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/combine-promises/-/combine-promises-1.2.0.tgz#5f2e68451862acf85761ded4d9e2af7769c2ca6a"
+  integrity sha512-VcQB1ziGD0NXrhKxiwyNbCDmRzs/OShMs2GqW2DlU2A/Sd0nQxE1oWDAE5O0ygSx5mgQOn9eIFh7yKPgFRVkPQ==
+
+comma-separated-tokens@^2.0.0:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/comma-separated-tokens/-/comma-separated-tokens
