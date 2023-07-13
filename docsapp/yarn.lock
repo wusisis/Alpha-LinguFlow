@@ -3181,4 +3181,31 @@ cookie@0.6.0:
 copy-text-to-clipboard@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/copy-text-to-clipboard/-/copy-text-to-clipboard-3.2.0.tgz#0202b2d9bdae30a49a53f898626dcc3b49ad960b"
-  integrity sha512-RnJFp1XR/LOBDckxTib5Qj
+  integrity sha512-RnJFp1XR/LOBDckxTib5Qjr/PMfkatD0MUCQgdpqS8MdKiNUzBjAQBEN6oUy+jW7LI93BBG3DtMB2KOOKpGs2Q==
+
+copy-webpack-plugin@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/copy-webpack-plugin/-/copy-webpack-plugin-11.0.0.tgz#96d4dbdb5f73d02dd72d0528d1958721ab72e04a"
+  integrity sha512-fX2MWpamkW0hZxMEg0+mYnA40LTosOSa5TqZ9GYIBzyJa9C3QUaMPSE2xAi/buNr8u89SfD9wHSQVBzrRa/SOQ==
+  dependencies:
+    fast-glob "^3.2.11"
+    glob-parent "^6.0.1"
+    globby "^13.1.1"
+    normalize-path "^3.0.0"
+    schema-utils "^4.0.0"
+    serialize-javascript "^6.0.0"
+
+core-js-compat@^3.31.0, core-js-compat@^3.36.1:
+  version "3.36.1"
+  resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.36.1.tgz#1818695d72c99c25d621dca94e6883e190cea3c8"
+  integrity sha512-Dk997v9ZCt3X/npqzyGdTlq6t7lDBhZwGvV94PKzDArjp7BTRm7WlDAXYd/OWdeFHO8OChQYRJNJvUCqCbrtKA==
+  dependencies:
+    browserslist "^4.23.0"
+
+core-js-pure@^3.30.2:
+  version "3.36.1"
+  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.36.1.tgz#1461c89e76116528b54eba20a0aff30164087a94"
+  integrity sha512-NXCvHvSVYSrewP0L5OhltzXeWFJLo2AL2TYnj6iLV3Bw8mM62wAQMNgUCRI6EBu6hVVpbCxmOPlxh1Ikw2PfUA==
+
+core-js@^3.31.1:
+  v
