@@ -41,4 +41,46 @@ class DuplicatedTypeError(Exception):
 
 class UnregisteredError(Exception):
     """
-    UnregisteredError indicates that a nam
+    UnregisteredError indicates that a name (patterns) is required by other code (blocks/patterns),
+    but no class is registered with that name.
+    """
+
+    def __init__(self, ref_name: str, cls: type):
+        super(UnregisteredError, self).__init__(
+            f"type {cls} not registered, referenced by {ref_name}",
+        )
+
+
+class ApplicationNotFound(Exception):
+    """
+    ApplicationNotFound indicates that the specified application is not found in database.
+    """
+
+    def __init__(self, application_id: str):
+        self.application_id = application_id
+
+    def __str__(self):
+        return f"application {self.application_id} not found"
+
+
+class NoActiveVersion(Exception):
+    """
+    NoActiveVersion indicates that the specified application has no acitve version.
+    """
+
+    def __init__(self, application_id: str):
+        self.application_id = application_id
+
+    def __str__(self):
+        return f"application {self.application_id} has no active version"
+
+
+class VersionnNotFound(Exception):
+    """
+    VersionnNotFound indicates that the specified version not found in database.
+    """
+
+    def __init__(self, version_id: str):
+        self.version_id = version_id
+
+    def __st
