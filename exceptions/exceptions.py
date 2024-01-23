@@ -83,4 +83,52 @@ class VersionnNotFound(Exception):
     def __init__(self, version_id: str):
         self.version_id = version_id
 
-    def __st
+    def __str__(self):
+        return f"version {self.version_id} not found"
+
+
+class InteractionNotFound(Exception):
+    """
+    InteractionNotFound indicates that the specified iteraction not found in database.
+    """
+
+    def __init__(self, interaction_id: str):
+        self.interaction_id = interaction_id
+
+    def __str__(self):
+        return f"interaction {self.interaction_id} not found"
+
+
+class InteractionError(Exception):
+    """
+    InteractionError is used in invoke blocks.
+
+    Invoke blocks try to invoke other apps and return the result, when there is
+    any error, raise InteractionError.
+    """
+
+    def __init__(self, error: dict):
+        self.error = error
+
+    def __str__(self):
+        return f"invoke encounter error: {json.dumps(self.error)}"
+
+
+class ApplicationInputTypeMismatch(Exception):
+    """
+    Exception raised when the application receives an input of unexpected type.
+
+    Attributes:
+    exp -- the expected type of the input
+    got -- the actual type of the input
+    """
+
+    def __init__(self, exp: type, got: type):
+        self.exp = exp
+        self.got = got
+
+    def __str__(self):
+        return f"the application expect {self.exp} as input, got {self.got}"
+
+
+class EmbeddingError
