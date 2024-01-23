@@ -131,4 +131,30 @@ class ApplicationInputTypeMismatch(Exception):
         return f"the application expect {self.exp} as input, got {self.got}"
 
 
-class EmbeddingError
+class EmbeddingError(Exception):
+    def __init__(self, model_name: str, text: str, msg: str):
+        self.model_name = model_name
+        self.text = text
+        self.msg = msg
+
+    def __str__(self):
+        return f"error on embedding text `{self.text}` with model `{self.model_name}`: {self.msg}"
+
+
+class GraphCheckError(Exception):
+    """
+    An abstract class for graph validation.
+
+    When a new graph is submitted, a list of checks will be performed. If any check fails,
+    an exception inherited from GraphCheckError will be raised.
+    """
+
+    pass
+
+
+class NodeConstructError(Exception):
+    """
+    When DAG node construction fails, NodeConstructError will be raised.
+    """
+
+    pass
