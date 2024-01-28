@@ -62,4 +62,29 @@ class ApplicationVersion(Base):
     configuration = Column(JSON, nullable=False)
     created_at = Column(TIMESTAMP, nullable=False)
     updated_at = Column(TIMESTAMP, nullable=False)
- 
+    deleted_at = Column(TIMESTAMP, nullable=True)
+
+    application_index = Index("ix_version_app_id", app_id)
+    created_at_index = Index("ix_version_created_at", created_at)
+    deleted_at_index = Index("ix_version_deleted_at", deleted_at)
+
+
+class Interaction(Base):
+    """
+    Interaction records every interaction with a specific app version.
+    """
+
+    __tablename__ = "interactions"
+
+    id = Column(String(36), primary_key=True, nullable=False)
+    user = Column(String(256), nullable=False)
+    app_id = Column(String(36), nullable=False)
+    version_id = Column(String(36), nullable=False)
+    created_at = Column(TIMESTAMP, nullable=False)
+    updated_at = Column(TIMESTAMP, nullable=False)
+    output = Column(TEXT, nullable=True)
+    data = Column(JSON, nullable=True)
+    error = Column(JSON, nullable=True)
+
+    version_index = Index("ix_interactions_version_id", version_id)
+    created_at_index = Index("ix_interactions_created_at", created_at)
