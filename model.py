@@ -31,4 +31,35 @@ class Application(Base):
     the DAG, and then produce the interaction record.
     """
 
-    __tablename__ = "app
+    __tablename__ = "applications"
+
+    id = Column(String(36), primary_key=True, nullable=False)
+    name = Column(String(256), nullable=False)
+    user = Column(String(256), nullable=False)
+    langfuse_public_key = Column(String(64), nullable=True)
+    langfuse_secret_key = Column(String(64), nullable=True)
+    active_version = Column(String(36), nullable=True)
+    created_at = Column(TIMESTAMP, nullable=False)
+    updated_at = Column(TIMESTAMP, nullable=False)
+    deleted_at = Column(TIMESTAMP, nullable=True)
+
+    deleted_at_index = Index("ix_application_deleted_at", deleted_at)
+
+
+class ApplicationVersion(Base):
+    """
+    ApplicationVersion models version of app. It is mainly used to store DAG configurations.
+    """
+
+    __tablename__ = "versions"
+
+    id = Column(String(36), primary_key=True, nullable=False)
+    name = Column(String(36), nullable=False)
+    user = Column(String(256), nullable=False)
+    parent_id = Column(String(36), nullable=True)
+    app_id = Column(String(36), nullable=False)
+    meta = Column(JSON, nullable=True)
+    configuration = Column(JSON, nullable=False)
+    created_at = Column(TIMESTAMP, nullable=False)
+    updated_at = Column(TIMESTAMP, nullable=False)
+ 
