@@ -153,4 +153,33 @@ class ListComparator(ABC):
     """
     An abstract class for comparing lists.
 
-    All classes inherited from this one should take a list an
+    All classes inherited from this one should take a list and returns a bool.
+    """
+
+    def __init__(self): ...
+
+    @abstractmethod
+    def __call__(self, input: list) -> bool: ...
+
+
+@pattern(name="List_Contains")
+class ListContains(ListComparator):
+    """
+    ListContains checks if input list contains specified text.
+    """
+
+    def __init__(self, value: str):
+        self.value = value
+
+    def __call__(self, input: list) -> bool:
+        return self.value in input
+
+
+@pattern(name="List_Is_Empty")
+class ListIsEmpty(ListComparator):
+    """
+    ListIsEmpty checks if input list is empty.
+    """
+
+    def __call__(self, input: list) -> bool:
+        return len(input) == 0
