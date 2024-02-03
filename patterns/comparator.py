@@ -105,4 +105,52 @@ class TextEqual(TextComparator):
     def __init__(self, value: str):
         self.value = value
 
-    d
+    def __call__(self, input: str) -> bool:
+        return input == self.value
+
+
+@pattern(name="Text_Contains")
+class TextContains(TextComparator):
+    """
+    TextContains checks if input text contains specified sub string.
+    """
+
+    def __init__(self, value: str):
+        self.value = value
+
+    def __call__(self, input: str) -> bool:
+        return self.value in input
+
+
+@pattern(name="Text_Has_Prefix")
+class TextHasPrefix(TextComparator):
+    """
+    TextHasPrefix checks if input text has specified prefix.
+    """
+
+    def __init__(self, value: str):
+        self.value = value
+
+    def __call__(self, input: str) -> bool:
+        return input.startswith(self.value)
+
+
+@pattern(name="Text_Has_Suffix")
+class TextHasSuffix(TextComparator):
+    """
+    TextHasSuffix checks if input text has specified suffix.
+    """
+
+    def __init__(self, value: str):
+        self.value = value
+
+    def __call__(self, input: str) -> bool:
+        return input.endswith(self.value)
+
+
+@pattern(name="List_Comparator")
+class ListComparator(ABC):
+    """
+    An abstract class for comparing lists.
+
+    All classes inherited from this one should take a list an
