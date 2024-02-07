@@ -48,4 +48,47 @@ class Qdrant(VectorDB):
         """
         self.client.delete_collection(collection_name=ns)
 
-    def vec_id(s
+    def vec_id(self, index: List[str]) -> str:
+        """
+        Generate a unique vector id based on the index.
+
+        Args:
+            index (List[str]): The index used to generate the id.
+
+        Returns:
+            str: The generated vector id.
+        """
+        h = hashlib.new("md5")
+        for x in index:
+            h.update(hashlib.sha256(x.encode()).digest())
+        return h.hexdigest()
+
+    def retrieve(self, ns: str, vec: List[float], limit: int) -> List[dict]:
+        """
+        Retrieve data from Qdrant.
+
+        Args:
+            ns (str): The namespace to retrieve data from.
+            vec (List[float]): The query vector.
+            limit (int): The maximum number of results to return.
+
+        Returns:
+            List[dict]: The retrieved data.
+        """
+        xs = self.client.search(
+            collection_name=ns,
+            query_vector=vec,
+            limit=limit,
+        )
+        return [
+            {
+                **x.payload,
+                "_id": x.id,
+                "_score": x.score,
+            }
+            for x in xs
+        ]
+
+    def upsert(self, ns: str, vec_id: str, vec: List[float], metadata: dict):
+        """
+        Upsert data into Qdr
