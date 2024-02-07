@@ -91,4 +91,34 @@ class Qdrant(VectorDB):
 
     def upsert(self, ns: str, vec_id: str, vec: List[float], metadata: dict):
         """
-        Upsert data into Qdr
+        Upsert data into Qdrant.
+
+        Args:
+            ns (str): The namespace to upsert data into.
+            vec_id (str): The id of the data.
+            vec (List[float]): The vector representation of the data.
+            metadata (dict): The data to insert.
+        """
+        self.client.upsert(
+            collection_name=ns,
+            points=[
+                PointStruct(
+                    id=vec_id,
+                    vector=vec,
+                    payload=metadata,
+                )
+            ],
+        )
+
+    def delete(self, ns: str, vec_id: str):
+        """
+        Delete data from Qdrant.
+
+        Args:
+            ns (str): The namespace to delete data from.
+            vec_id (str): The vector id to delete.
+        """
+        self.client.delete(
+            collection_name=ns,
+            points_selector=PointIdsList(points=[vec_id]),
+        )
