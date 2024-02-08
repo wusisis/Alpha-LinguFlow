@@ -55,4 +55,11 @@ class VectorDB(ABC):
 
     @abstractmethod
     def delete(self, ns: str, vec_id: T):
-       
+        """
+        Delete data based on the vector id.
+
+        Args:
+            ns (str): The namespace delete from.
+            vec_id (T): The vector id to delete.
+        """
+        pass
