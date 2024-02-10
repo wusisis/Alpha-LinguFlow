@@ -59,4 +59,43 @@ class FewShotPromptTemplate(StringPromptTemplate):
 
         Args:
             text (str): The text to format.
-            **kwargs
+            **kwargs: Additional keyword arguments.
+
+        Returns:
+            str: The formatted text.
+        """
+        kwargs["text"] = text
+        examples = self.namespace.retrieve(text)
+        examples.reverse()
+        return self.prefix.format(**kwargs) + "\n" "\n".join(
+            [self.example_prompt.format(**e) for e in examples]
+        ) + "\n" + self.suffix.format(**kwargs)
+
+
+@pattern(name="Chat_Message_Prompt")
+class ChatMessagePrompt(ChatPromptTemplate):
+    """
+    Template for generating chat message prompts.
+    """
+
+    def __init__(self, system_prompt: str):
+        """
+        Initialize the ChatMessagePrompt with the provided system prompt.
+
+        Args:
+            system_prompt (str): The system prompt.
+        """
+        system_prompt = SystemMessagePromptTemplate.from_template(system_prompt)
+        super(ChatMessagePrompt, self).__init__(
+            input_variables=system_prompt.input_variables + ["messages"],
+            messages=[
+                system_prompt,
+                MessagesPlaceholder(variable_name="messages"),
+            ],
+        )
+
+
+@pattern(name="Zero_Shot_Prompt_Template")
+class ZeroShotPromptTemplate(StringPromptTemplate):
+    """
+    Template for generating zer
