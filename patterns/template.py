@@ -98,4 +98,38 @@ class ChatMessagePrompt(ChatPromptTemplate):
 @pattern(name="Zero_Shot_Prompt_Template")
 class ZeroShotPromptTemplate(StringPromptTemplate):
     """
-    Template for generating zer
+    Template for generating zero-shot prompts.
+    """
+
+    prompt_template: str
+
+    def __init__(self, prompt_template: str):
+        """
+        Initialize the ZeroShotPromptTemplate with the provided prompt template.
+
+        Args:
+            prompt_template (str): The prompt template.
+        """
+        super(ZeroShotPromptTemplate, self).__init__(
+            input_variables=PromptTemplate.from_template(
+                prompt_template
+            ).input_variables,
+            prompt_template=prompt_template,
+        )
+        self.prompt_template = prompt_template
+
+    @event(name="zero shot prompt format")
+    def format(self, text: str = "", **kwargs) -> str:
+        """
+        Format the text with the prompt template.
+
+        Args:
+            text (str): The text to format.
+            **kwargs: Additional keyword arguments.
+
+        Returns:
+            str: The formatted text.
+        """
+        kwargs["text"] = text
+        prompt = self.prompt_template.format(**kwargs)
+        return prompt
