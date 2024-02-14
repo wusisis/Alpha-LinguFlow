@@ -166,4 +166,45 @@ class Resolver:
         """
         Returns a dictionary of parameters for a given block name.
         Args:
-        
+            name: The name of the block.
+        Returns:
+            A dictionary mapping parameters to their __call__ annotations.
+        """
+        cls = self.lookup(name)
+        if cls is None:
+            return None
+
+        signature = inspect.signature(cls.__call__)
+        parameters = dict(signature.parameters)
+        parameters.pop("self")
+        return parameters
+
+    @functools.lru_cache
+    def outport(self, name: str) -> Optional[type]:
+        """
+        Returns the outport type for a given block name.
+        Args:
+            name: The name of the block.
+        Returns:
+            The annotation of the __call__ output type.
+        """
+        cls = self.lookup(name)
+        if cls is None:
+            return None
+
+        signature = inspect.signature(cls.__call__)
+        return signature.return_annotation
+
+
+def block(name: str, kind: str, alias: str = None):
+    """
+    Decorator for registering a block class.
+    Args:
+        name: The name of the block.
+        kind: The kind of the block (e.g., 'input', 'output').
+        alias: An optional alias for the block name.
+    Returns:
+        The decorated class.
+    """
+
+    def decorator(cls
