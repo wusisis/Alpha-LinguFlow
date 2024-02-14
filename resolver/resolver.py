@@ -91,4 +91,42 @@ class Resolver:
         """
         for n in self._block_list + self._pattern_list:
             if n["name"] == name:
-                
+                return n.get(key)
+        return None
+
+    @functools.lru_cache
+    def relookup(self, cls: type) -> Optional[str]:
+        """
+        Looks up a name by it's class (opposite with lookup).
+        Args:
+            cls: The class type to look up.
+        Returns:
+            The name of the class, or None if not found.
+        """
+        for n in self._block_list + self._pattern_list:
+            if n["class"] == cls:
+                return n["name"]
+        return None
+
+    @functools.lru_cache
+    def is_abstract(self, cls: type) -> bool:
+        """
+        Checks if a class has abstract methods.
+        Args:
+            cls: The class to check.
+        Returns:
+            True if the class has abstract methods, False otherwise.
+        """
+        for _, m in inspect.getmembers(cls):
+            if getattr(m, "__isabstractmethod__", False):
+                return True
+        return False
+
+    @functools.lru_cache
+    def candidates(self, name: str) -> List[str]:
+        """
+        Returns a list of candidate names for a given block or pattern name.
+        Args:
+            name: The name of the block or pattern.
+        Returns:
+            A list of 
