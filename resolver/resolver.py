@@ -129,4 +129,41 @@ class Resolver:
         Args:
             name: The name of the block or pattern.
         Returns:
-            A list of 
+            A list of candidate names.
+        """
+        cls = self.lookup(name)
+        if cls is None:
+            return []
+        names = []
+        for p in self._pattern_list:
+            if not issubclass(p["class"], cls) or self.is_abstract(p["class"]):
+                continue
+            name = self.relookup(p["class"])
+            if name is not None:
+                names.append(name)
+        return names
+
+    @functools.lru_cache
+    def slots(self, name: str) -> Optional[Dict[str, inspect.Parameter]]:
+        """
+        Returns a dictionary of parameters for a given block or pattern name.
+        Args:
+            name: The name of the block or pattern.
+        Returns:
+            A dictionary mapping parameters to their __init__ annotations.
+        """
+        cls = self.lookup(name)
+        if cls is None:
+            return None
+
+        signature = inspect.signature(cls.__init__)
+        parameters = dict(signature.parameters)
+        parameters.pop("self")
+        return parameters
+
+    @functools.lru_cache
+    def inports(self, name: str) -> Optional[Dict[str, inspect.Parameter]]:
+        """
+        Returns a dictionary of parameters for a given block name.
+        Args:
+        
