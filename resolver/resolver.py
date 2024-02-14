@@ -207,4 +207,41 @@ def block(name: str, kind: str, alias: str = None):
         The decorated class.
     """
 
-    def decorator(cls
+    def decorator(cls):
+        Resolver._block_list.append(
+            {
+                "name": name,
+                "alias": alias or name,
+                "category": "block",
+                "dir": kind,
+                "class": cls,
+            }
+        )
+        return cls
+
+    return decorator
+
+
+def pattern(name: str, builtin: bool = False, alias: str = None):
+    """
+    Decorator for registering a pattern class.
+    Args:
+        name: The name of the pattern.
+        builtin: Whether the pattern is built-in or not.
+        alias: An optional alias for the pattern name.
+    Returns:
+        The decorated class.
+    """
+
+    def decorator(cls):
+        Resolver._pattern_list.append(
+            {
+                "name": name,
+                "alias": alias or name,
+                "category": "builtin" if builtin else "type",
+                "class": cls,
+            }
+        )
+        return cls
+
+    return decorator
