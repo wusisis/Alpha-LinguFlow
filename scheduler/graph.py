@@ -49,4 +49,43 @@ class Graph:
             self._validate(
                 [
                     EndpointExist(),
-         
+                    GraphIsDAG(),
+                    RequiredInPortIsFit(),
+                    ExactlyOneInputAndOutput(),
+                    PortTypeMatch(),
+                    TypeHasStrMethod(),
+                ]
+            )
+
+    def _validate(self, rules: List[Rule]):
+        """
+        Validates the DAG graph against a list of rules.
+
+        Args:
+            rules (list): List of rules to validate against.
+        """
+        for r in rules:
+            r.check(self.g, self.nodes)
+
+    def _reset(self):
+        """
+        Resets the data attribute of each node in the graph.
+        """
+        for n in self.g.nodes:
+            if "data" in self.g.nodes[n]:
+                del self.g.nodes[n]["data"]
+
+    def run_node(
+        self, node_id, node_callback: Callable[[str, Any], None] = None
+    ) -> Any:
+        """
+        Runs a node in the graph and returns its output.
+
+        Args:
+            node_id (str): The id of the node to run.
+            node_callback (callable): Optional callback function to be called after running the node.
+
+        Returns:
+            Any: The output of the node.
+        """
+        node = sel
