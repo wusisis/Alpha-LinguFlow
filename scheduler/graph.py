@@ -88,4 +88,35 @@ class Graph:
         Returns:
             Any: The output of the node.
         """
-        node = sel
+        node = self.nodes[node_id]
+        in_edges = self.g.in_edges(node_id, data=True)
+        if len(in_edges) == 0:
+            try:
+                return node()
+            except Exception as e:
+                raise NodeException(node_id) from e
+
+        signature = inspect.signature(node.__call__)
+        node_params = {}
+
+        # fill default values
+        for k, p in signature.parameters.items():
+            if p.default != inspect.Parameter.empty:
+                node_params[k] = p.default
+
+        # run upstreams and fill values
+        for source_node, _, properties in in_edges:
+            port = properties["port"]
+            if "data" not in self.g.nodes[source_node]:
+                self.g.nodes[source_node]["data"] = self.run_node(
+                    source_node,
+                    node_callback=node_callback,
+                )
+                if node_callback:
+                    node_callback(source_node, self.g.nodes[source_node]["data"])
+
+            if port is None or port not in signature.parameters:
+                # the None port and unknown port is special, it's required
+                if self.g.nodes[source_node]["data"] is None:
+                    return None
+                # i
