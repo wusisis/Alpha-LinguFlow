@@ -119,4 +119,36 @@ class Graph:
                 # the None port and unknown port is special, it's required
                 if self.g.nodes[source_node]["data"] is None:
                     return None
-                # i
+                # if the edge has a filter, check if the value is match with the filter
+                if (
+                    properties["case"] is not None
+                    and properties["case"] != self.g.nodes[source_node]["data"]
+                ):
+                    return None
+                if port is not None:
+                    node_params[port] = self.g.nodes[source_node]["data"]
+            elif self.g.nodes[source_node]["data"] is not None:
+                if (
+                    properties["case"] is not None
+                    and properties["case"] != self.g.nodes[source_node]["data"]
+                ):
+                    continue
+                node_params[port] = self.g.nodes[source_node]["data"]
+
+        # check if required params are filled
+        leak_params = set(
+            [k for k, p in signature.parameters.items() if p.kind != p.VAR_KEYWORD]
+        )
+        leak_params -= set(node_params.keys())
+        if len(leak_params) > 0:
+            # some params leaked
+            return None
+
+        try:
+            return node(**node_params)
+        except Exception as e:
+            raise NodeException(node_id) from e
+
+    def input_type(self) -> type:
+        """
+ 
