@@ -151,4 +151,37 @@ class Graph:
 
     def input_type(self) -> type:
         """
- 
+        Returns the type of the input expected by the graph.
+
+        Returns:
+            type: The type of the input expected by the graph.
+        """
+        input_nodes = [node for node in self.nodes.values() if node.is_input]
+        assert len(input_nodes) == 1, "exactly one input node is required"
+
+        signature = inspect.signature(input_nodes[0].input)
+        return list(signature.parameters.values())[0].annotation
+
+    def run(
+        self,
+        input: Union[str, dict, list],
+        context: dict,
+        node_callback: Callable[[str, Any], None] = None,
+    ) -> str:
+        """
+        Runs the graph with the given input and returns the output.
+
+        Args:
+            input (Union[str, dict, list]): The input data for the graph.
+            context (dict): The global context during running.
+            node_callback (callable): Optional callback function to be called after running each node.
+
+        Returns:
+            str: The output of the graph.
+        """
+        self._reset()
+        ctx_token = BaseBlock._ctx.set(context)
+
+        try:
+            input_nodes = [node for node in self.nodes.values() if node.is_input]
+         
