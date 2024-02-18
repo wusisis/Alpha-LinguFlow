@@ -1,0 +1,28 @@
+config:
+  nodes:
+    - alias: null
+      id: Ub01XPpYeAVyMFoWPfCGj
+      name: List_Input
+      slots: null
+    - alias: null
+      id: 0i1IUkK4JLXJ_rW6YHdG5
+      name: Chat_LLM
+      slots:
+        model:
+          name: OpenAI_Chat_LLM
+          slots:
+            max_tokens: 4096
+            openai_api_key:
+              name: Secret
+              slots:
+                plaintext:
+        prompt_template_type:
+          name: Chat_Message_Prompt
+          slots:
+            system_prompt: You are a useful assistant.
+    - alias: null
+      id: z-VDaVqKg4ONmIlAIFehb
+      name: Text_Output
+      slots: null
+  edges:
+    - src_block: 0i1IUk
