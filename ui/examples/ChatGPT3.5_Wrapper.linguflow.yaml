@@ -25,4 +25,55 @@ config:
       name: Text_Output
       slots: null
   edges:
-    - src_block: 0i1IUk
+    - src_block: 0i1IUkK4JLXJ_rW6YHdG5
+      dst_block: z-VDaVqKg4ONmIlAIFehb
+      dst_port: input
+      alias: null
+      case: null
+    - src_block: Ub01XPpYeAVyMFoWPfCGj
+      dst_block: 0i1IUkK4JLXJ_rW6YHdG5
+      dst_port: messages
+      alias: null
+      case: null
+ui:
+  nodes:
+    - width: 355
+      height: 111
+      position:
+        x: 0
+        'y': 97.88427734375
+      id: Ub01XPpYeAVyMFoWPfCGj
+      dragging: false
+      positionAbsolute:
+        x: 0
+        'y': 97.88427734375
+      selected: false
+      type: custom_block_node
+      targetPosition: left
+      sourcePosition: right
+    - width: 381
+      height: 314
+      position:
+        x: 641.9974060058594
+        'y': 0
+      id: 0i1IUkK4JLXJ_rW6YHdG5
+      dragging: false
+      positionAbsolute:
+        x: 641.9974060058594
+        'y': 0
+      selected: true
+      type: custom_block_node
+      targetPosition: left
+      sourcePosition: right
+    - width: 360
+      height: 111
+      position:
+        x: 1308.6255798339844
+        'y': 97.88429260253906
+      id: z-VDaVqKg4ONmIlAIFehb
+      positionAbsolute:
+        x: 1308.6255798339844
+        'y': 97.88429260253906
+      type: custom_block_node
+      targetPosition: left
+      sourcePosition: right
