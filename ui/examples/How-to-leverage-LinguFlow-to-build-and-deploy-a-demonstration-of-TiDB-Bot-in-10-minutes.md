@@ -67,4 +67,13 @@ Then you can input the testing questions in the input box and get the whole info
 
 When the test result is available, you can publish this version from 2 ways. You can deliver the API to your customer or integrate it into your service. 
 
-  ![publish1](images/pub
+  ![publish1](images/publish1.png)
+  ![publish2](images/publish2.png)
+
+## 6. Conclusion
+
+It is a quick start of a simplified version of a production application. 
+
+It is clear that building applications based on business logic allows for a quicker implementation, debugging, and deployment experience, compared to understanding the construction relationships of entities in the code before organizing the application.
+
+In the future, there will be more usful blocks in this repository. If you have any questions or expectations, please do not hesitate to raise an issue or contact us.
