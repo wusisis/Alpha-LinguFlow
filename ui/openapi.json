@@ -1,0 +1,1 @@
+{"openapi":"3.1.0","info":{"title":"FastAPI","version":"0.1.0"},"paths":{"/patterns":{"get":{"summary":"Patterns","description":"Retrieves application patterns based on resolver information.\n\nReturns:\n    ApplicationPatternsResponse: A response containing a list of PatternInfo objects.","operationId":"pat
