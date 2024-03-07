@@ -1,0 +1,14 @@
+{
+  "name": "linguflow-ui",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "yarn dev",
+    "dev": "yarn gen:api && vite",
+    "build": "tsc && vite build",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "fetch:api": "curl -o openapi.json http://localhost:8000/openapi.json",
+    "gen:api": "orval --config ./orval.config.ts"
+  },
+  "depen
