@@ -21,4 +21,17 @@ export const Pagination: React.FC<{ total: number; page: number; onChange: (page
         Prev
       </Button>
       <Text>
-        
+        Page {page} of {total}
+      </Text>
+      <Button
+        rightSection={<IconArrowRight size={16} />}
+        variant="light"
+        color="gray"
+        disabled={pagination.active === total}
+        onClick={() => pagination.next()}
+      >
+        Next
+      </Button>
+    </Group>
+  )
+}
