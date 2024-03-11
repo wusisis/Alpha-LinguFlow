@@ -12,4 +12,16 @@ export const Boolean: React.FC<SlotTypeComponentProps> = ({ slot, formPath, disa
           size="xs"
           ref={ref}
           disabled={disabled}
-          labelPosition="lef
+          labelPosition="left"
+          label={
+            <Box c="#212529" fw={500}>
+              {slot.name}
+            </Box>
+          }
+          value={value || slot.default}
+          onChange={disabled ? undefined : onChange}
+        />
+      )}
+    />
+  )
+}
