@@ -25,4 +25,23 @@ const queryClient = new QueryClient({
   }
 })
 
-ReactDOM.cr
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <HashRouter>
+      <QueryClientProvider client={queryClient}>
+        <MantineProvider defaultColorScheme="light">
+          <ModalsProvider>
+            <Notifications position="top-center" zIndex={Number.MAX_SAFE_INTEGER} />
+            <ErrorBoundary
+              fallbackRender={(error) => {
+                return <CustomError error={error} />
+              }}
+            >
+              <AppRoutes />
+            </ErrorBoundary>
+          </ModalsProvider>
+        </MantineProvider>
+      </QueryClientProvider>
+    </HashRouter>
+  </React.StrictMode>
+)
