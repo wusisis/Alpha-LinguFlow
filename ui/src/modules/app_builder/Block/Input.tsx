@@ -7,4 +7,19 @@ export const Input: React.FC<SlotTypeComponentProps> = ({ slot, formPath, disabl
     <Controller
       name={formPath}
       render={({ field: { ref, value, onChange } }) => (
-       
+        <Textarea
+          required={required}
+          variant={disabled ? 'filled' : 'default'}
+          ref={ref}
+          label={slot.name}
+          size="xs"
+          value={value || slot.default || ''}
+          onChange={disabled ? undefined : onChange}
+          styles={{ input: { resize: 'vertical' } }}
+          autosize
+          maxRows={20}
+        />
+      )}
+    />
+  )
+}
