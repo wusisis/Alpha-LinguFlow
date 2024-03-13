@@ -20,4 +20,10 @@ export const Dict: React.FC<SlotTypeComponentProps> = ({ slot, formPath, disable
             src={value}
             onAdd={!disabled && ((v) => onChange(v.updated_src as ApplicationRunInputAnyOf))}
             onEdit={!disabled && ((v) => onChange(v.updated_src as ApplicationRunInputAnyOf))}
-            onDelete={!disabled && ((v) => onChange(v.updated_src as ApplicationRu
+            onDelete={!disabled && ((v) => onChange(v.updated_src as ApplicationRunInputAnyOf))}
+          />
+        </>
+      )}
+    />
+  )
+}
