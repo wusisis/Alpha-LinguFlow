@@ -19,3 +19,18 @@ export const ListComponent: React.FC<SlotTypeComponentProps> = ({ slot, formPath
           size="xs"
           value={value}
           data={data}
+          onChange={onChange}
+          // getCreateLabel={(query) => `+ ${query}`}
+          // onCreate={(query) => {
+          //   setData((current) => [...current, query])
+          //   return query
+          // }}
+          // creatable
+          searchable
+          // withinPortal
+          comboboxProps={{ withinPortal: false }}
+        />
+      )}
+    />
+  )
+}
