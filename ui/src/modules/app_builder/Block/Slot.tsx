@@ -48,4 +48,54 @@ export const Slot: React.FC<SlotTypeComponentProps> = React.memo(({ formPath, sl
   )
 })
 
-const ExternalTypeSelect: React.FC<SlotTypeComponentProps> = ({ formPath, slot, disabled, stackIndex
+const ExternalTypeSelect: React.FC<SlotTypeComponentProps> = ({ formPath, slot, disabled, stackIndex }) => {
+  const { patterns, patternMap } = usePatternSchema()
+
+  if (!patterns.length) {
+    return <></>
+  }
+
+  const slotType = patternMap[slot.class_name]
+  const { candidates } = slotType
+
+  return (
+    <Controller
+      name={`${formPath}.name`}
+      render={({ field: { value, onChange } }) => (
+        <>
+          <Select
+            required
+            placeholder="Pick candidates"
+            size="xs"
+            allowDeselect={false}
+            label={slot.name}
+            data={candidates}
+            value={value}
+            onChange={onChange}
+            disabled={disabled}
+            comboboxProps={{ withinPortal: false }}
+          />
+          {!!value && (
+            <SlotTypeParams
+              parentValue={value}
+              formPath={formPath}
+              slotType={slotType}
+              slotTypeMap={patternMap}
+              disabled={disabled}
+              stackIndex={stackIndex}
+            />
+          )}
+        </>
+      )}
+    />
+  )
+}
+
+const SlotTypeParams: React.FC<{
+  parentValue: string
+  formPath: string
+  slotType: PatternInfo
+  slotTypeMap: { [k: string]: PatternInfo }
+  disabled?: boolean
+  stackIndex?: number
+}> = ({ parentValue, f
