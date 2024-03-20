@@ -98,4 +98,16 @@ const SlotTypeParams: React.FC<{
   slotTypeMap: { [k: string]: PatternInfo }
   disabled?: boolean
   stackIndex?: number
-}> = ({ parentValue, f
+}> = ({ parentValue, formPath, slotTypeMap, disabled, stackIndex = 1 }) => {
+  const subSlots = slotTypeMap[parentValue]?.slots || []
+
+  return (
+    <Box pl={stackIndex * 10}>
+      {subSlots?.map((s) => (
+        <Box py={4} key={s.name}>
+          <Slot key={s.name} formPath={formPath} slot={s} disabled={disabled} stackIndex={stackIndex + 1} />
+        </Box>
+      ))}
+    </Box>
+  )
+}
