@@ -35,4 +35,24 @@ export const useNodeType = () => {
   const store = useStoreApi()
   const useNodeTypeFn = useCallback(
     (id: string) =>
-      
+      Array.from(store.getState().nodeInternals.values()).find((n) => n.id === id) as Node<BlockNodeProps>,
+    [store]
+  )
+  return useNodeTypeFn
+}
+
+export const useGetLinguFlowEdge = () => {
+  const { getEdges } = useReactFlow()
+
+  return () =>
+    getEdges().map(
+      (e) =>
+        ({
+          src_block: e.source,
+          dst_block: e.target,
+          dst_port: e.targetHandle === BLOCK_PORT_ID_NULL ? null : e.targetHandle!,
+          alias: e.data?.alias,
+          case: e.data?.case
+        } as GraphEdge)
+    )
+}
