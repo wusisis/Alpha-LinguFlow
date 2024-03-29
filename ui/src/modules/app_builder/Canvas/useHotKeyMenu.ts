@@ -54,4 +54,19 @@ export const useHotKeyMenu = (toolbarFocusedRef: React.RefObject<boolean>) => {
   }, [])
 
   return {
-    hotKeyMe
+    hotKeyMenuOpened,
+    setHotKeyMenuOpened,
+    menuPosition,
+    menuStatus,
+    events: {
+      onPaneMouseEnter,
+      onPaneMouseLeave,
+      onPaneMouseMove,
+      onPaneContextMenu,
+      onNodeMouseEnter,
+      onNodeMouseLeave,
+      onNodeContextMenu,
+      onEdgeContextMenu
+    }
+  }
+}
