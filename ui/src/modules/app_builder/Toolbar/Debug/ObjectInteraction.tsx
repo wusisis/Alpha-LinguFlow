@@ -40,4 +40,20 @@ const ObjectInput: React.FC<InteractionProps<ApplicationRunInputAnyOf>> = ({ val
   return (
     <Textarea
       w="90%"
-      aut
+      autosize
+      error={error}
+      minRows={8}
+      maxRows={8}
+      value={inputValue}
+      onBlur={(e) => {
+        setError(false)
+        try {
+          onChange(JSON.parse(e.target.value) as ApplicationRunInputAnyOf)
+        } catch (e) {
+          setError((e as Error).toString())
+        }
+      }}
+      onChange={(e) => setInputValue(e.currentTarget.value)}
+    />
+  )
+}
