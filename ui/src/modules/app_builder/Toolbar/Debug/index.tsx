@@ -51,3 +51,28 @@ export const Debug: React.FC<{
   onInteractionError: (errorInteraction?: ErrorInteraction) => void
 }> = ({ app, ver, onUpdateCurrentInteraction, onInteractionError }) => {
   const { blockMap } = useBlockSchema()
+  const inputBlock = (ver.configuration as Config).nodes
+    .map((n) => blockMap[n.name])
+    .find((n) => INPUT_NAMES.includes(n.name))!
+  const InteractionComponent = interactionComponents[inputBlock.name]
+  const [value, setValue] = useState<any>(InteractionComponent.defaultValue())
+  const [interactions, setInteractions] = useState<InteractionInfo[]>([])
+  const [currentInteraction, _setCurrentInteraction] = useState<InteractionInfo>()
+  const setCurrentInteraction = (int?: InteractionInfo) => {
+    _setCurrentInteraction(int)
+    onUpdateCurrentInteraction(int)
+  }
+  const { mutateAsync: runVersion } = useAsyncRunAppVersionApplicationsApplicationIdVersionsVersionIdAsyncRunPost()
+  const [isError, setIsError] = useState(false)
+  const { data: fetchingIntercation, isLoading: isInteractionLoading } = useGetInteractionInteractionsInteractionIdGet(
+    currentInteraction?.id as string,
+    {
+      query: {
+        enabled: !!currentInteraction?.id && !isInteractionFinished(currentInteraction) && !isError,
+        refetchInterval: () => {
+          if (isInteractionFinished(currentInteraction)) {
+            return false
+          }
+          return 5000
+        },
+        refetchIntervalInBa
