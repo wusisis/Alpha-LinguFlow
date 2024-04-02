@@ -75,4 +75,39 @@ export const Debug: React.FC<{
           }
           return 5000
         },
-        refetchIntervalInBa
+        refetchIntervalInBackground: true,
+
+        onSuccess: (data) => {
+          setCurrentInteraction(data.interaction)
+          if (!isInteractionFinished(data.interaction)) {
+            return
+          }
+          setValue(InteractionComponent.defaultValue)
+          setInteractions((v) => [...v, data.interaction!])
+        },
+        onError: (error: InteractionErrResponse) => {
+          setIsError(true)
+          if (error?.response?.data?.node_id) {
+            onInteractionError({
+              id: error.response.data.node_id,
+              msg: error.response.data.message,
+              code: error.response.data.code
+            })
+          }
+        }
+      }
+    }
+  )
+  const [_isLoading, setIsLoading] = useState(false)
+  const isLoading =
+    (_isLoading || isInteractionLoading || (!!fetchingIntercation && !isInteractionFinished(currentInteraction))) &&
+    !isError
+
+  const runInteraction = async () => {
+    setCurrentInteraction(undefined)
+    onInteractionError(undefined)
+    setIsError(false)
+    setIsLoading(true)
+    try {
+      const interactionRst = await runVersion({ applicationId: app.id, versionId: ver.id, data: { input: value } })
+      co
