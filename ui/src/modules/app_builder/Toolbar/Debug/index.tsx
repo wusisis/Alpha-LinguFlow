@@ -110,4 +110,39 @@ export const Debug: React.FC<{
     setIsLoading(true)
     try {
       const interactionRst = await runVersion({ applicationId: app.id, versionId: ver.id, data: { input: value } })
-      co
+      const debugRst = await getInteractionInteractionsInteractionIdGet(interactionRst.id)
+      setCurrentInteraction(debugRst.interaction)
+
+      if (!isInteractionFinished(debugRst.interaction)) {
+        return
+      }
+      setValue(InteractionComponent.defaultValue)
+      setInteractions((v) => [...v, debugRst.interaction!])
+    } catch (error: any) {
+      setIsError(true)
+      if (error?.response?.data?.node_id) {
+        onInteractionError({
+          id: error.response.data.node_id,
+          msg: error.response.data.message,
+          code: error.response.data.code
+        })
+      }
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const btnRef = useRef(null)
+
+  return (
+    <Group h="100%" style={{ flexWrap: 'nowrap' }}>
+      <Group align="flex-start" h="100%" style={{ flexGrow: 1, flexWrap: 'nowrap' }}>
+        <Title order={6}>Input</Title>
+        <Box h="100%" style={{ flexGrow: 1, overflowY: 'auto' }}>
+          <InteractionComponent.component
+            value={value}
+            onChange={setValue}
+            onSubmit={() => (btnRef.current as any as { click: () => void }).click()}
+            interactions={interactions}
+          />
+    
