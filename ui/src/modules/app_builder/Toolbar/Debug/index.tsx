@@ -145,4 +145,38 @@ export const Debug: React.FC<{
             onSubmit={() => (btnRef.current as any as { click: () => void }).click()}
             interactions={interactions}
           />
-    
+        </Box>
+        <Button ref={btnRef} variant="light" style={{ flexShrink: 0 }} loading={isLoading} onClick={runInteraction}>
+          Send
+        </Button>
+      </Group>
+
+      <Divider orientation="vertical" />
+
+      <Stack h="100%" w="400px" style={{ overflow: 'auto', flexShrink: 0 }} align="flex-start">
+        <Group gap="xs">
+          <Title order={6}>History(0)</Title>
+          <FileButton
+            onChange={async (f) => {
+              if (!f) {
+                return
+              }
+
+              const yamlStr = await f.text()
+              const config = yaml.load(yamlStr) as InteractionInfo
+              setCurrentInteraction(config)
+              setInteractions((v) => [...v, config])
+            }}
+          >
+            {(props) => (
+              <Tooltip label="Import Interaction">
+                <ActionIcon variant="subtle" {...props} c="dark">
+                  <IconPackageImport size="1.2rem" />
+                </ActionIcon>
+              </Tooltip>
+            )}
+          </FileButton>
+        </Group>
+        <Stack gap={4} w="100%" h="calc(100% - 24px)" style={{ overflow: 'auto' }}>
+          {interactions.map((interaction, index) => (
+ 
