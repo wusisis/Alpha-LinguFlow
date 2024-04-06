@@ -179,4 +179,32 @@ export const Debug: React.FC<{
         </Group>
         <Stack gap={4} w="100%" h="calc(100% - 24px)" style={{ overflow: 'auto' }}>
           {interactions.map((interaction, index) => (
- 
+            <Group key={interaction.id} gap={4}>
+              <Kbd>{index}</Kbd>
+              <Button
+                variant={interaction.id === currentInteraction?.id ? 'light' : 'subtle'}
+                color="gray"
+                size="xs"
+                onClick={() => setCurrentInteraction(interactions[index])}
+                style={{ fontFamily: 'monospace' }}
+              >
+                {interaction.id}
+              </Button>
+              <Tooltip label="Export Interaction">
+                <ActionIcon
+                  variant="subtle"
+                  color="gray"
+                  onClick={() => {
+                    download(yaml.dump(interaction), `${app.name}/${interaction.id}.interaction.yaml`, 'text/plain')
+                  }}
+                >
+                  <IconPackageExport size="1rem" />
+                </ActionIcon>
+              </Tooltip>
+            </Group>
+          ))}
+        </Stack>
+      </Stack>
+    </Group>
+  )
+}
