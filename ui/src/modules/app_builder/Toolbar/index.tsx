@@ -61,4 +61,32 @@ export const Toolbar: React.FC<{
             }
           }}
           disabled={versionNotSaved || noInputBlock}
-  
+          disabledTooltip={versionNotSaved ? 'Current version not saved.' : 'Invalid input block.'}
+        >
+          <IconBug style={{ width: '80%', height: '80%', color: colors.gray[9] }} stroke={1} />
+        </ToolbarButton>
+        <Group gap="xs" pr="sm">
+          {app && (
+            <>
+              <Box>
+                <Text span fw="bold" c="gray.9" size="xs">
+                  {app.name}
+                </Text>
+                {ver && (
+                  <Text span c="gray.9" size="xs">
+                    /{ver.name}
+                  </Text>
+                )}
+              </Box>
+              <ToolbarButton
+                tooltip="Information"
+                onClick={() => {
+                  setTab(TabValue.APP_INFO)
+                  if (tab === TabValue.APP_INFO || !toolbarPaneOpened) {
+                    setToolbarPaneOpened((v) => !v)
+                  }
+                }}
+                disabled={versionNotSaved || noInputBlock}
+                disabledTooltip={versionNotSaved ? 'Current version not saved.' : 'Invalid input block.'}
+              >
+                <IconInfoCircle style={{ width: '80%', h
