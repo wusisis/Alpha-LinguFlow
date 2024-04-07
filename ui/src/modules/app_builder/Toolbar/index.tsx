@@ -28,4 +28,37 @@ export const Toolbar: React.FC<{
   setToolbarPaneOpened,
   isCreatingVersion,
   onUpdateCurrentInteraction,
-  onInte
+  onInteractionError
+}) => {
+  const { colors } = useMantineTheme()
+  const [tab, setTab] = useState<TabValue>(TabValue.DEBUG)
+  const versionNotSaved = !ver || isCreatingVersion
+  const noInputBlock = !((ver?.configuration || {}) as Config)?.nodes?.some((n) => INPUT_NAMES.includes(n.name))
+
+  return (
+    <Box h={TOOLBAR_HEIGHT + (toolbarPaneOpened ? TOOLBAR_PANE_HEIGHT : 0)}>
+      {toolbarPaneOpened && (
+        <Pane
+          tab={tab}
+          setTab={setTab}
+          setToolbarPaneOpened={setToolbarPaneOpened}
+          app={app}
+          ver={ver}
+          isCreatingVersion={isCreatingVersion}
+          onUpdateCurrentInteraction={onUpdateCurrentInteraction}
+          onInteractionError={onInteractionError}
+        />
+      )}
+
+      <Group justify="space-between" style={(theme) => ({ borderTop: `1px solid ${theme.colors.gray[1]}` })}>
+        <ToolbarButton
+          tooltip="Debug"
+          bg="gray.2"
+          onClick={() => {
+            setTab(TabValue.DEBUG)
+            if (tab === TabValue.DEBUG || !toolbarPaneOpened) {
+              setToolbarPaneOpened((v) => !v)
+            }
+          }}
+          disabled={versionNotSaved || noInputBlock}
+  
