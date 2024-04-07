@@ -47,4 +47,39 @@ export const Pane: React.FC<{
         visible={isCreatingVersion}
         zIndex={1000}
         overlayProps={{ radius: 'sm', blur: 2 }}
-        loaderP
+        loaderProps={{ color: 'gray.3' }}
+      />
+      <Tabs.List>
+        <Tabs.Tab value={TabValue.DEBUG} style={{ borderTop: 'none' }}>
+          Debug
+        </Tabs.Tab>
+        <Tabs.Tab value={TabValue.APP_INFO} style={{ borderTop: 'none' }}>
+          Information
+        </Tabs.Tab>
+
+        <ActionIcon
+          size="sm"
+          variant="subtle"
+          c="gray"
+          style={{ position: 'absolute', right: 7, top: 7 }}
+          onClick={() => setToolbarPaneOpened(false)}
+        >
+          <IconX size="1rem" />
+        </ActionIcon>
+      </Tabs.List>
+
+      <Tabs.Panel value={TabValue.DEBUG} h={`calc(100% - ${TAB_HEIGHT}px)`} p="xs" style={{ overflowY: 'auto' }}>
+        <Debug
+          app={app!}
+          ver={ver!}
+          onUpdateCurrentInteraction={onUpdateCurrentInteraction}
+          onInteractionError={onInteractionError}
+        />
+      </Tabs.Panel>
+
+      <Tabs.Panel value={TabValue.APP_INFO} h={`calc(100% - ${TAB_HEIGHT}px)`} p="xs" style={{ overflowY: 'auto' }}>
+        <AppInfo app={app} ver={ver} />
+      </Tabs.Panel>
+    </Tabs>
+  )
+}
