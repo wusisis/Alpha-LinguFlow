@@ -134,4 +134,11 @@ const ToolbarButton: React.FC<
           }
         >
           {children}
-    
+        </Group>
+      </HoverCard.Target>
+      <HoverCard.Dropdown px={8} py={4}>
+        <Text size="xs">{disabled ? disabledTooltip : tooltip}</Text>
+      </HoverCard.Dropdown>
+    </HoverCard>
+  )
+}
