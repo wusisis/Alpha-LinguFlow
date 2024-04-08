@@ -89,4 +89,49 @@ export const Toolbar: React.FC<{
                 disabled={versionNotSaved || noInputBlock}
                 disabledTooltip={versionNotSaved ? 'Current version not saved.' : 'Invalid input block.'}
               >
-                <IconInfoCircle style={{ width: '80%', h
+                <IconInfoCircle style={{ width: '80%', height: '80%', color: colors.gray[9] }} stroke={1} />
+              </ToolbarButton>
+            </>
+          )}
+        </Group>
+      </Group>
+    </Box>
+  )
+}
+
+const ToolbarButton: React.FC<
+  PropsWithChildren<{
+    tooltip?: string
+    bg?: StyleProp<DefaultMantineColor>
+    w?: StyleProp<React.CSSProperties['width']>
+    onClick?: () => void
+    disabled?: boolean
+    disabledTooltip?: string
+  }>
+> = ({ children, tooltip, bg, w, onClick, disabled, disabledTooltip }) => {
+  return (
+    <HoverCard disabled={!tooltip || !disabled} withArrow position="top" openDelay={500} shadow="xs" offset={2}>
+      <HoverCard.Target>
+        <Group
+          justify="center"
+          align="center"
+          p={4}
+          w={w || TOOLBAR_HEIGHT * 1.3}
+          h={TOOLBAR_HEIGHT}
+          c="gray.9"
+          bg={bg || '#fff'}
+          className={classes.toolbar_button}
+          onClick={
+            disabled
+              ? () => {
+                  notifications.show({
+                    title: 'Error',
+                    message: disabledTooltip,
+                    color: 'red'
+                  })
+                }
+              : onClick
+          }
+        >
+          {children}
+    
