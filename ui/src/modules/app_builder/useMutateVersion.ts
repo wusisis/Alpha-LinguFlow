@@ -46,4 +46,44 @@ export const useCreateVersion = (version?: ApplicationVersionInfo) => {
       }
     })
 
-    Object.keys(getValues()
+    Object.keys(getValues()).forEach((k) => resetField(k))
+    if (verId) {
+      navigate(`../${id}`, { replace: true, relative: 'path' })
+    } else {
+      navigate(`./${id}`, { replace: true, relative: 'path' })
+    }
+  }
+
+  return { createVersion, isCreatingVersion: isLoading, canSave, setCanSave }
+}
+
+export const useUpdateVersion = (version?: ApplicationVersionInfo) => {
+  const { appId, verId } = useParams()
+  const { getNodes } = useReactFlow()
+  const { mutateAsync: _updateVersion, isLoading } =
+    useUpdateAppVersionMetaApplicationsApplicationIdVersionsVersionIdPut()
+  const [canUpdate, setCanUpdate] = useState(false)
+  const updateVersion = async (name?: string, force?: boolean) => {
+    if (!canUpdate && !force) {
+      return
+    }
+
+    await _updateVersion({
+      applicationId: appId!,
+      versionId: verId!,
+      data: {
+        name: name || version?.name || getCurrentDateTimeName(),
+        metadata: {
+          ...version?.metadata,
+          ui: {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            nodes: getNodes().map(({ data, ...n }) => n)
+          }
+        }
+      }
+    })
+    setCanUpdate(false)
+  }
+
+  useEffect(() => {
+    setCanUpdate(false)
