@@ -87,3 +87,7 @@ export const useUpdateVersion = (version?: ApplicationVersionInfo) => {
 
   useEffect(() => {
     setCanUpdate(false)
+  }, [version])
+
+  return { updateVersion, isUpdatingVersion: isLoading, canUpdate, setCanUpdate }
+}
