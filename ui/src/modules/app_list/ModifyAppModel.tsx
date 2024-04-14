@@ -57,4 +57,53 @@ export const ModifyAppModel: React.FC<ModifyAppModelProps> = ({ opened, onClose,
     }
   }
 
-  const isLoading
+  const isLoading = isCreating || isUpdating
+
+  useEffect(() => {
+    if (!opened) {
+      return
+    }
+    setName(app?.name || '')
+    setLangfusePK(app?.langfuse_public_key || '')
+    setLangfuseSK(app?.langfuse_secret_key || '')
+    setTemplate([])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [opened])
+
+  return (
+    <Modal
+      closeOnClickOutside={!isLoading}
+      closeOnEscape={!isLoading}
+      withCloseButton={!isLoading}
+      opened={opened}
+      onClose={onClose}
+      title={
+        <Text fw="bold">
+          {!app ? (
+            'New Application'
+          ) : (
+            <>
+              Edit <Code fz="md">{app.name}</Code>
+            </>
+          )}
+        </Text>
+      }
+      centered
+      trapFocus={false}
+    >
+      <Stack>
+        <TextInput
+          required
+          autoFocus
+          label="Name"
+          placeholder="Please input the application name"
+          value={name}
+          disabled={isLoading}
+          onChange={(event) => {
+            setName(event.currentTarget.value)
+          }}
+          onKeyDown={getHotkeyHandler([['Enter', handleConfirm]])}
+        />
+
+        <TextInput
+          label="Langfuse Public Ke
