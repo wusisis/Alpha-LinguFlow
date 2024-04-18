@@ -106,4 +106,42 @@ export const ModifyAppModel: React.FC<ModifyAppModelProps> = ({ opened, onClose,
         />
 
         <TextInput
-          label="Langfuse Public Ke
+          label="Langfuse Public Key"
+          placeholder="Please input the langfuse public key"
+          value={langfusePK}
+          disabled={isLoading}
+          onChange={(event) => {
+            setLangfusePK(event.currentTarget.value)
+          }}
+        />
+
+        <TextInput
+          label="Langfuse Secret Key"
+          placeholder="Please input the langfuse secret key"
+          value={langfuseSK}
+          disabled={isLoading}
+          onChange={(event) => {
+            setLangfuseSK(event.currentTarget.value)
+          }}
+          onKeyDown={getHotkeyHandler([['Enter', handleConfirm]])}
+        />
+
+        {!app && (
+          <>
+            <Divider />
+
+            <Title order={6}>
+              <Group justify="space-between">
+                <Box>Templates </Box>
+                <Anchor href="https://github.com/pingcap/LinguFlow/tree/main/ui/examples" target="_blank" fz="xs">
+                  More
+                </Anchor>
+              </Group>
+            </Title>
+
+            <Chip.Group
+              multiple
+              value={template}
+              onChange={(ts) =>
+                setTemplate((oldTs) => {
+                  return ts.filter((t) => !oldTs.includes(t
