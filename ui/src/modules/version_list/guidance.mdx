@@ -1,0 +1,44 @@
+
+# LinguFlow App API
+
+The LinguFlow applications API can be used to build, manage, and use apps. For details, see the [API documentation](WIP). Here's how to send requests to LinguFlow apps from your application.
+
+## Base URL
+
+<code>{props.baseURL}</code>
+
+## Authentication
+
+WIP, the authorization feature is currently being implemented.
+
+## Async Run App
+
+### POST <code>/applications/{props.appId}/async_run</code>
+
+Initiates the asynchronous execution of a LinguFlow application identified by the specified ID.
+
+**Path Parameters**
+
+`application_id` (required, string): The ID of the application to run.
+
+**Request Body**
+
+`input` (required, string/string list/string dict): The user input or question content.
+
+**Response**
+
+```
+{
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+}
+```
+
+`id` (string): The interaction ID of the asynchronous execution task, used for polling the running result later.
+
+### GET `/interactions/{interaction_id}`
+
+Retrieves information about a specific interaction by its ID.
+
+**Path Parameters**
+
+`interaction_id` (required, string): The ID of the interaction to retrieve.

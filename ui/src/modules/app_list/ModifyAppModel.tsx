@@ -144,4 +144,28 @@ export const ModifyAppModel: React.FC<ModifyAppModelProps> = ({ opened, onClose,
               value={template}
               onChange={(ts) =>
                 setTemplate((oldTs) => {
-                  return ts.filter((t) => !oldTs.includes(t
+                  return ts.filter((t) => !oldTs.includes(t))
+                })
+              }
+            >
+              <Group>
+                <Chip radius="xs" variant="outline" value="chatbot">
+                  Chatbot
+                </Chip>
+              </Group>
+            </Chip.Group>
+          </>
+        )}
+      </Stack>
+
+      <Group mt="xl" justify="end">
+        <Button variant="default" onClick={onClose} disabled={isLoading}>
+          Cancel
+        </Button>
+        <Button color="dark" loading={isLoading} disabled={!name} onClick={handleConfirm}>
+          Confirm
+        </Button>
+      </Group>
+    </Modal>
+  )
+}
