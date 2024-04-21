@@ -42,3 +42,34 @@ Retrieves information about a specific interaction by its ID.
 **Path Parameters**
 
 `interaction_id` (required, string): The ID of the interaction to retrieve.
+
+**Response**
+
+```
+{
+    interaction: {
+      "id": "string",
+      "version_id": "string",
+      "created_at": 0,
+      "updated_at": 0,
+      "output": "string",
+      "data": {
+        "{node_id_l}": "string",
+        "{node_id_n}": "string",
+        "{node_id_m}": "string"
+      },
+    }
+}
+```
+
+`id` (string): The ID of the interaction.
+
+`version_id` (string): The ID of the specific version of the application, globally unique.
+
+`created_at` (timestamp): The timestamp of when the interaction was created.
+
+`updated_at` (timestamp): The timestamp of the most recent update to the interaction. If the interaction has been completed, this is the end time.
+
+`output` (string): The response of the LinguFlow application to the input content.
+
+`data` (dictionary): The output of each node in the LinguFlow application. The keys are the IDs of the nodes in the application, and the values are strings representing the specific output of each node.
